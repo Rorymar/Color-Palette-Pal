@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 
 public class ApplyColor : MonoBehaviour
@@ -14,6 +16,7 @@ public class ApplyColor : MonoBehaviour
     public Material color5_material;
     public Material color6_material;
     public FlexibleColorPicker color_picker;
+    public GameObject palette_manager;
     
     //Private Variables
     private bool can_change_col1;
@@ -27,6 +30,8 @@ public class ApplyColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var col1Input = palette_manager.transform.GetChild(0).gameObject.GetComponent<InputField>();
+        col1Input.text = "SAMPLE";
         can_change_col1 = true;
         can_change_col2 = true;
         can_change_col3 = true;
@@ -50,6 +55,7 @@ public class ApplyColor : MonoBehaviour
         if (can_change_col1 && !previousColor.Equals(color_picker.color))
         {
             color1_material.color = color_picker.color;
+            
         }
 
         if (can_change_col2 && !previousColor.Equals(color_picker.color))
@@ -116,12 +122,12 @@ public class ApplyColor : MonoBehaviour
     {
         if (changed.Length == 7)
         {
-            color1_material.color = createColor(changed);   
+            color1_material.color = createColorFromHex(changed);   
         }
     }
     
     //Private functions used by others
-    private Color createColor(string hex)
+    private Color createColorFromHex(string hex)
     {
         var red = int.Parse(hex.Substring(1, 2), NumberStyles.HexNumber) / 255f;
         var green = int.Parse(hex.Substring(3, 2), NumberStyles.HexNumber) / 255f;
