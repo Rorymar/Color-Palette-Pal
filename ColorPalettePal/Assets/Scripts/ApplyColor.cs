@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -8,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class ApplyColor : MonoBehaviour
 {
-    //Public Variables
+    //Public Variable Materials
     public Material color1_material;
     public Material color2_material;
     public Material color3_material;
@@ -16,7 +18,14 @@ public class ApplyColor : MonoBehaviour
     public Material color5_material;
     public Material color6_material;
     public FlexibleColorPicker color_picker;
-    public GameObject palette_manager;
+    
+    //Public Variable input fields
+    public TMP_InputField input_field1;
+    public TMP_InputField input_field2;
+    public TMP_InputField input_field3;
+    public TMP_InputField input_field4;
+    public TMP_InputField input_field5;
+    public TMP_InputField input_field6;
     
     //Private Variables
     private bool can_change_col1;
@@ -30,8 +39,6 @@ public class ApplyColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var col1Input = palette_manager.transform.GetChild(0).gameObject.GetComponent<InputField>();
-        col1Input.text = "SAMPLE";
         can_change_col1 = true;
         can_change_col2 = true;
         can_change_col3 = true;
@@ -45,6 +52,14 @@ public class ApplyColor : MonoBehaviour
         color5_material.color = color_picker.color;
         color6_material.color = color_picker.color;
         previousColor = color_picker.color;
+        
+        //Set input fields to start
+        input_field1.SetTextWithoutNotify(createHexFromColor(color1_material.color));
+        input_field2.SetTextWithoutNotify(createHexFromColor(color2_material.color));
+        input_field3.SetTextWithoutNotify(createHexFromColor(color3_material.color));
+        input_field4.SetTextWithoutNotify(createHexFromColor(color4_material.color));
+        input_field5.SetTextWithoutNotify(createHexFromColor(color5_material.color));
+        input_field6.SetTextWithoutNotify(createHexFromColor(color6_material.color));
     }
 
     // Update is called once per frame
@@ -55,32 +70,38 @@ public class ApplyColor : MonoBehaviour
         if (can_change_col1 && !previousColor.Equals(color_picker.color))
         {
             color1_material.color = color_picker.color;
+            input_field1.SetTextWithoutNotify(createHexFromColor(color1_material.color));
             
         }
 
         if (can_change_col2 && !previousColor.Equals(color_picker.color))
         {
             color2_material.color = color_picker.color;
+            input_field2.SetTextWithoutNotify(createHexFromColor(color2_material.color));
         }
 
         if (can_change_col3 && !previousColor.Equals(color_picker.color))
         {
             color3_material.color = color_picker.color;
+            input_field3.SetTextWithoutNotify(createHexFromColor(color3_material.color));
         }
 
         if (can_change_col4 && !previousColor.Equals(color_picker.color))
         {
             color4_material.color = color_picker.color;
+            input_field4.SetTextWithoutNotify(createHexFromColor(color4_material.color));
         }
 
         if (can_change_col5 && !previousColor.Equals(color_picker.color))
         {
             color5_material.color = color_picker.color;
+            input_field5.SetTextWithoutNotify(createHexFromColor(color5_material.color));
         }
 
         if (can_change_col6 && !previousColor.Equals(color_picker.color))
         {
             color6_material.color = color_picker.color;
+            input_field6.SetTextWithoutNotify(createHexFromColor(color6_material.color));
         }
 
     previousColor = color_picker.color;
@@ -125,6 +146,41 @@ public class ApplyColor : MonoBehaviour
             color1_material.color = createColorFromHex(changed);   
         }
     }
+    public void changeCol2Hex(string changed)
+    {
+        if (changed.Length == 7)
+        {
+            color2_material.color = createColorFromHex(changed);   
+        }
+    }
+    public void changeCol3Hex(string changed)
+    {
+        if (changed.Length == 7)
+        {
+            color3_material.color = createColorFromHex(changed);   
+        }
+    }
+    public void changeCol4Hex(string changed)
+    {
+        if (changed.Length == 7)
+        {
+            color4_material.color = createColorFromHex(changed);   
+        }
+    }
+    public void changeCol5Hex(string changed)
+    {
+        if (changed.Length == 7)
+        {
+            color5_material.color = createColorFromHex(changed);   
+        }
+    }
+    public void changeCol6Hex(string changed)
+    {
+        if (changed.Length == 7)
+        {
+            color6_material.color = createColorFromHex(changed);   
+        }
+    }
     
     //Private functions used by others
     private Color createColorFromHex(string hex)
@@ -133,5 +189,15 @@ public class ApplyColor : MonoBehaviour
         var green = int.Parse(hex.Substring(3, 2), NumberStyles.HexNumber) / 255f;
         var blue = int.Parse(hex.Substring(5, 2), NumberStyles.HexNumber) / 255f;
         return new Color(red, green, blue);
+    }
+
+    private string createHexFromColor(Color color)
+    {
+        var red = (int)(color.r * 255);
+        var green = (int)(color.g * 255);
+        var blue = (int)(color.b * 255);
+        string hex = "#" + red.ToString("X2") + green.ToString("X2")
+                     + blue.ToString("X2");
+        return hex.ToUpper();
     }
 }
