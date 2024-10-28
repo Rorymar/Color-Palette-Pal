@@ -27,7 +27,7 @@ public class ApplyColor : MonoBehaviour
     public TMP_InputField input_field5;
     public TMP_InputField input_field6;
     
-    //Private Variables
+    //Private Variables for changing the colors via color picker
     private bool can_change_col1;
     private bool can_change_col2;
     private bool can_change_col3;
@@ -35,6 +35,14 @@ public class ApplyColor : MonoBehaviour
     private bool can_change_col5;
     private bool can_change_col6;
     private Color previousColor;
+    
+    //Private variables for locking / unlocking the colors
+    private bool col1_locked;
+    private bool col2_locked;
+    private bool col3_locked;
+    private bool col4_locked;
+    private bool col5_locked;
+    private bool col6_locked;
     
     // Start is called before the first frame update
     void Start()
