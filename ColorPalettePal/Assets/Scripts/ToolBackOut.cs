@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ToolBackOut : MonoBehaviour
 {
+    //Return the User back to the Navigational Menu Scene
     public void BackButton(){
-        SceneManager.LoadScene("UITestScene");
+        SceneManager.LoadScene("NavMenu");
     }
 }

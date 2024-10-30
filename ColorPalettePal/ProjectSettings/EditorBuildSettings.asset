@@ -5,13 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/UITestScene.unity
+    path: Assets/Scenes/DevScenes/NavMenu.unity
     guid: 6f1d65c1bbb894647bd532b0d3fb1984
-  - enabled: 1
-    path: Assets/Scenes/testScene.unity
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/testScene.unity
     guid: 099b5307996f7bb489293d1aaae5139c
+  - enabled: 1
+    path: Assets/Scenes/DevScenes/PaletteFromScratch.unity
+    guid: d245a32feca5dcc7fab69503e8fd06a6
+  - enabled: 1
+    path: Assets/Scenes/DevScenes/PaletteFromImage.unity
+    guid: 186149df3c7d74fbcbbc2dd8ae0b0523
+  - enabled: 1
+    path: Assets/Scenes/DevScenes/ColorBlindToggle.unity
+    guid: 0dd4a493679d2423eb7b7e2db65bc507
+  - enabled: 1
+    path: Assets/Scenes/DevScenes/AdjustPalette.unity
+    guid: 4034ad0b0bac743449dce0272499476d
+  - enabled: 1
+    path: Assets/Scenes/DevScenes/ImageFilter.unity
+    guid: 4c584bd09ea81452797275b894e5a776
   m_configObjects: {}
