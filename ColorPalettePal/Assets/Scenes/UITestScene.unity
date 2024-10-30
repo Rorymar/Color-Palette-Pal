@@ -134,14 +134,13 @@ GameObject:
   - component: {fileID: 161813603}
   - component: {fileID: 161813602}
   - component: {fileID: 161813601}
-  - component: {fileID: 161813604}
   m_Layer: 5
-  m_Name: CABackButton
+  m_Name: CFBackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &161813600
 RectTransform:
   m_ObjectHideFlags: 0
@@ -205,7 +204,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 161813602}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610370608}
+        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
+        m_MethodName: CFToBase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &161813602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,19 +255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161813599}
   m_CullTransparentMesh: 1
---- !u!114 &161813604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161813599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: BaseNav
 --- !u!1 &167764912
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,14 +401,13 @@ GameObject:
   - component: {fileID: 223543979}
   - component: {fileID: 223543978}
   - component: {fileID: 223543977}
-  - component: {fileID: 223543980}
   m_Layer: 5
   m_Name: GenScratchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &223543976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -474,7 +471,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 223543978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610370608}
+        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
+        m_MethodName: CFToPaletteScratch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &223543978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,19 +522,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223543975}
   m_CullTransparentMesh: 1
---- !u!114 &223543980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223543975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: 
 --- !u!1 &225901595
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,14 +626,13 @@ GameObject:
   - component: {fileID: 320502198}
   - component: {fileID: 320502197}
   - component: {fileID: 320502196}
-  - component: {fileID: 320502195}
   m_Layer: 5
   m_Name: ColorBlindButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &320502194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -658,19 +653,6 @@ RectTransform:
   m_AnchoredPosition: {x: 11.8769, y: 59.560123}
   m_SizeDelta: {x: 473.8499, y: 160.1003}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &320502195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320502193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: 
 --- !u!114 &320502196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,6 +908,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434040937}
   m_CullTransparentMesh: 1
+--- !u!1 &610370606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610370607}
+  - component: {fileID: 610370608}
+  m_Layer: 5
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &610370607
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610370606}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2028918057}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &610370608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610370606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd865a371cd04e3195e002bfb57cdcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseNav: {fileID: 1372390894}
+  CFNav: {fileID: 1848108339}
+  CANav: {fileID: 325999347}
 --- !u!1 &745929882
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +1016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Palette Creation Features
+  m_text: Generate Palette from Scratch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1281,7 +1314,6 @@ GameObject:
   - component: {fileID: 1314168666}
   - component: {fileID: 1314168665}
   - component: {fileID: 1314168664}
-  - component: {fileID: 1314168667}
   m_Layer: 5
   m_Name: ColorAccessButton
   m_TagString: Untagged
@@ -1352,7 +1384,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1314168665}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610370608}
+        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
+        m_MethodName: BaseToCA
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1314168665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,19 +1435,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314168662}
   m_CullTransparentMesh: 1
---- !u!114 &1314168667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314168662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: CANav
 --- !u!1 &1372390894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,14 +1484,13 @@ GameObject:
   - component: {fileID: 1440895436}
   - component: {fileID: 1440895435}
   - component: {fileID: 1440895434}
-  - component: {fileID: 1440895437}
   m_Layer: 5
   m_Name: GenImageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1440895433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1563,19 +1593,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440895432}
   m_CullTransparentMesh: 1
---- !u!114 &1440895437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440895432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: 
 --- !u!1 &1486183951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1605,6 @@ GameObject:
   - component: {fileID: 1486183955}
   - component: {fileID: 1486183954}
   - component: {fileID: 1486183953}
-  - component: {fileID: 1486183956}
   m_Layer: 5
   m_Name: CreationFeatsButton
   m_TagString: Untagged
@@ -1659,7 +1675,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1486183954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610370608}
+        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
+        m_MethodName: BaseToCF
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1486183954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,19 +1726,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486183951}
   m_CullTransparentMesh: 1
---- !u!114 &1486183956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486183951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: CFNav
 --- !u!1 &1537994853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,7 +1783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Palette Creation Features
+  m_text: Generate Palette from Image
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1857,14 +1872,13 @@ GameObject:
   - component: {fileID: 1556773044}
   - component: {fileID: 1556773043}
   - component: {fileID: 1556773042}
-  - component: {fileID: 1556773041}
   m_Layer: 5
   m_Name: AdjustPalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1556773040
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1885,19 +1899,6 @@ RectTransform:
   m_AnchoredPosition: {x: 11.8769, y: -126}
   m_SizeDelta: {x: 473.8499, y: 160.1003}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1556773041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556773039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: 
 --- !u!114 &1556773042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2411,8 +2412,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 161813600}
-  - {fileID: 1440895433}
   - {fileID: 223543976}
+  - {fileID: 1440895433}
   m_Father: {fileID: 2028918057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2432,14 +2433,13 @@ GameObject:
   - component: {fileID: 1898933308}
   - component: {fileID: 1898933307}
   - component: {fileID: 1898933306}
-  - component: {fileID: 1898933305}
   m_Layer: 5
   m_Name: ImgFilterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1898933304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2460,19 +2460,6 @@ RectTransform:
   m_AnchoredPosition: {x: 17.855, y: -317}
   m_SizeDelta: {x: 473.8499, y: 160.1003}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1898933305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898933303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: 
 --- !u!114 &1898933306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2784,6 +2771,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 780256463}
+  - {fileID: 610370607}
   - {fileID: 1372390895}
   - {fileID: 1848108340}
   - {fileID: 325999348}
@@ -2806,14 +2794,13 @@ GameObject:
   - component: {fileID: 2103287950}
   - component: {fileID: 2103287949}
   - component: {fileID: 2103287948}
-  - component: {fileID: 2103287947}
   m_Layer: 5
-  m_Name: CFBackButton
+  m_Name: CABackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2103287946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2834,19 +2821,6 @@ RectTransform:
   m_AnchoredPosition: {x: -299.66528, y: -494}
   m_SizeDelta: {x: 101.73511, y: 122.3438}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2103287947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103287945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c621ec45bf2ae4497b7c293bbf7106f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showTag: BaseNav
 --- !u!114 &2103287948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2890,7 +2864,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2103287949}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610370608}
+        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
+        m_MethodName: CAToBase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2103287949
 MonoBehaviour:
   m_ObjectHideFlags: 0
