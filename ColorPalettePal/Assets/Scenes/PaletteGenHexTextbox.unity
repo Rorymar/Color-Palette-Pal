@@ -497,19 +497,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c58dee0978ce44ba5dedea1565bba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color1_material: {fileID: 0}
-  color2_material: {fileID: 0}
-  color3_material: {fileID: 0}
-  color4_material: {fileID: 0}
-  color5_material: {fileID: 0}
-  color6_material: {fileID: 0}
-  color_picker: {fileID: 0}
-  input_field1: {fileID: 0}
-  input_field2: {fileID: 0}
-  input_field3: {fileID: 0}
-  input_field4: {fileID: 0}
-  input_field5: {fileID: 0}
-  input_field6: {fileID: 0}
+  color1_material: {fileID: 2100000, guid: 3a69ff95ab565af08979db296238e162, type: 2}
+  color2_material: {fileID: 2100000, guid: bf0ba5d15d8366d1681faa052302d322, type: 2}
+  color3_material: {fileID: 2100000, guid: bef28784911b7b3c8b518bb2c55c590e, type: 2}
+  color4_material: {fileID: 2100000, guid: 798e1770a1255ef76aefe5dbd33071ee, type: 2}
+  color5_material: {fileID: 2100000, guid: e778593e66f91b1d3a7a960d40306bc9, type: 2}
+  color6_material: {fileID: 2100000, guid: 004c00894d3594101b27e93713ccc1f9, type: 2}
+  color_picker: {fileID: 1252907627}
+  input_field1: {fileID: 2055323968}
+  input_field2: {fileID: 2081764244}
+  input_field3: {fileID: 1025027306}
+  input_field4: {fileID: 701457959}
+  input_field5: {fileID: 1242826437}
+  input_field6: {fileID: 454602837}
 --- !u!1001 &175016655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -787,7 +787,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 234034796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 458189978}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: unlockAllColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &234034796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,8 +1035,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: unlockCol3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &349222437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,7 +2131,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &626598065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,7 +3073,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &820760627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,8 +3233,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: unlockCol2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1015466668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,8 +3668,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: unlockCol4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1071045085
 GameObject:
   m_ObjectHideFlags: 0
@@ -3947,7 +3995,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1121431219}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 458189978}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: randomizePalette
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1121431219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,8 +4308,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: unlockCol6
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1242826436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4442,6 +4514,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2130943084915617137, guid: 4214b57e615806c448ba9d993d629531, type: 3}
   m_PrefabInstance: {fileID: 175016655}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252907627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2130943084915617136, guid: 4214b57e615806c448ba9d993d629531, type: 3}
+  m_PrefabInstance: {fileID: 175016655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31629c56f6f83234a90f6296f902f9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1268924262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,7 +4830,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1319125347
 GameObject:
   m_ObjectHideFlags: 0
@@ -5622,7 +5705,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1679395577
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,8 +5944,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: unlockCol5
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &1721724104
 GameObject:
   m_ObjectHideFlags: 0
@@ -6949,7 +7044,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2024164433
 GameObject:
   m_ObjectHideFlags: 0
@@ -7618,7 +7713,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2076826743
 GameObject:
   m_ObjectHideFlags: 0
@@ -7702,8 +7797,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: unlockCol1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &2081764243
 GameObject:
   m_ObjectHideFlags: 0

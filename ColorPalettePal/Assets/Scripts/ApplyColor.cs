@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Random = System.Random;
 
 
 public class ApplyColor : MonoBehaviour
@@ -18,7 +20,7 @@ public class ApplyColor : MonoBehaviour
     public Material color5_material;
     public Material color6_material;
     public FlexibleColorPicker color_picker;
-    
+
     //Public Variable input fields
     public TMP_InputField input_field1;
     public TMP_InputField input_field2;
@@ -26,7 +28,7 @@ public class ApplyColor : MonoBehaviour
     public TMP_InputField input_field4;
     public TMP_InputField input_field5;
     public TMP_InputField input_field6;
-    
+
     //Private Variables for changing the colors via color picker
     private bool can_change_col1;
     private bool can_change_col2;
@@ -35,7 +37,7 @@ public class ApplyColor : MonoBehaviour
     private bool can_change_col5;
     private bool can_change_col6;
     private Color previousColor;
-    
+
     //Private variables for locking / unlocking the colors
     private bool col1_locked;
     private bool col2_locked;
@@ -43,16 +45,17 @@ public class ApplyColor : MonoBehaviour
     private bool col4_locked;
     private bool col5_locked;
     private bool col6_locked;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        can_change_col1 = true;
-        can_change_col2 = true;
-        can_change_col3 = true;
-        can_change_col4 = true;
-        can_change_col5 = true;
-        can_change_col6 = true;
+        can_change_col1 = false;
+        can_change_col2 = false;
+        can_change_col3 = false;
+        can_change_col4 = false;
+        can_change_col5 = false;
+        can_change_col6 = false;
+        unlockAllCols();
         color1_material.color = color_picker.color;
         color2_material.color = color_picker.color;
         color3_material.color = color_picker.color;
@@ -60,7 +63,7 @@ public class ApplyColor : MonoBehaviour
         color5_material.color = color_picker.color;
         color6_material.color = color_picker.color;
         previousColor = color_picker.color;
-        
+
         //Set input fields to start
         input_field1.SetTextWithoutNotify(createHexFromColor(color1_material.color));
         input_field2.SetTextWithoutNotify(createHexFromColor(color2_material.color));
@@ -79,7 +82,7 @@ public class ApplyColor : MonoBehaviour
         {
             color1_material.color = color_picker.color;
             input_field1.SetTextWithoutNotify(createHexFromColor(color1_material.color));
-            
+
         }
 
         if (can_change_col2 && !previousColor.Equals(color_picker.color))
@@ -112,7 +115,7 @@ public class ApplyColor : MonoBehaviour
             input_field6.SetTextWithoutNotify(createHexFromColor(color6_material.color));
         }
 
-    previousColor = color_picker.color;
+        previousColor = color_picker.color;
     }
 
     //Functions to monitor whether a color is toggled or not
@@ -145,8 +148,66 @@ public class ApplyColor : MonoBehaviour
     {
         can_change_col6 = !can_change_col6;
     }
-    
-    //Functions to change colors based on hex input
+
+    //Functions to lock/unlock each color
+    public void unlockCol1(bool lockStatus)
+    {
+        col1_locked = !col1_locked;
+    }
+    public void unlockCol2(bool lockStatus)
+    {
+        col2_locked = !col2_locked;
+    }
+    public void unlockCol3(bool lockStatus)
+    {
+        col3_locked = !col3_locked;
+    }
+
+    public void unlockCol4(bool lockStatus)
+    {
+        col4_locked = !col4_locked;
+    }
+
+    public void unlockCol5(bool lockStatus)
+    {
+        col5_locked = !col5_locked;
+    }
+
+    public void unlockCol6(bool lockStatus)
+    {
+        col6_locked = !col6_locked;
+    }
+
+    public void unlockAllCols()
+    {
+        col1_locked = false;
+        print(this.col1_locked);
+        col2_locked = false;
+        col3_locked = false;
+        col4_locked = false;
+        col5_locked = false;
+        col6_locked = false;
+    }
+
+    public void setLocksImageToUnlocked()
+    {
+        print("In image, col1: " + col1_locked);
+        //Place holder before actual lock images
+        transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
+            ().isOn = false;
+        transform.GetChild(1).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
+            ().isOn = false;
+        transform.GetChild(2).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
+            ().isOn = false;
+        transform.GetChild(3).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
+            ().isOn = false;
+        transform.GetChild(4).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
+            ().isOn = false;
+        transform.GetChild(5).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
+            ().isOn = false;
+    }
+
+//Functions to change colors based on hex input
     public void changeCol1Hex(string changed)
     {
         if (changed.Length == 7)
@@ -189,6 +250,41 @@ public class ApplyColor : MonoBehaviour
             color6_material.color = createColorFromHex(changed);   
         }
     }
+
+    public void randomizeUnlockedColors()
+    //Retrives all materials and states on whether locked, then randomizes the color on the unlocked colors
+    {
+        List<Material> mat_list = new List<Material>();
+        List<bool> locked_list = new List<bool>();
+        Random random_num_gen= new Random();
+        
+        locked_list.Add(col1_locked);
+        print("Color 1: " + col1_locked);
+        locked_list.Add(col2_locked);
+        locked_list.Add(col3_locked);
+        locked_list.Add(col4_locked);
+        locked_list.Add(col5_locked);
+        locked_list.Add(col6_locked);
+        
+        for (int i = 0; i < 6; ++i)
+        {
+            mat_list.Add(transform.GetChild(i).gameObject.transform.GetChild(0).gameObject
+                .GetComponent<UnityEngine.UI.Image>().material);
+        }
+        for (int i = 0; i < 6; ++i)
+        {
+            if (!locked_list[i])
+            {
+                double red = random_num_gen.NextDouble();
+                double blue = random_num_gen.NextDouble();
+                double green = random_num_gen.NextDouble();
+                Color col_to_set = new Color((float)red, (float)blue, (float)green);
+                mat_list[i].color = col_to_set;
+                transform.GetChild(i).gameObject.transform.GetChild(2).gameObject.
+                    GetComponent<TMP_InputField>().text = createHexFromColor(col_to_set);
+            }
+        }
+    }
     
     //Private functions used by others
     private Color createColorFromHex(string hex)
@@ -201,9 +297,9 @@ public class ApplyColor : MonoBehaviour
 
     private string createHexFromColor(Color color)
     {
-        var red = (int)(color.r * 255);
-        var green = (int)(color.g * 255);
-        var blue = (int)(color.b * 255);
+        int red = (int)(color.r * 255);
+        int green = (int)(color.g * 255);
+        int blue = (int)(color.b * 255);
         string hex = "#" + red.ToString("X2") + green.ToString("X2")
                      + blue.ToString("X2");
         return hex.ToUpper();

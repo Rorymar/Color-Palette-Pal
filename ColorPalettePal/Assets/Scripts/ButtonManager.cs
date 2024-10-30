@@ -21,11 +21,11 @@ public class ButtonManager : MonoBehaviour
 
     public void randomizePalette()
     {
-        
+        palette.randomizeUnlockedColors();
     }
 
     public void unlockAllColors()
     {
-        
+        palette.setLocksImageToUnlocked();
     }
 }
