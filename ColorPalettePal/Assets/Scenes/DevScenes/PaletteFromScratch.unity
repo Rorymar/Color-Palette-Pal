@@ -510,6 +510,13 @@ MonoBehaviour:
   input_field4: {fileID: 701457959}
   input_field5: {fileID: 1242826437}
   input_field6: {fileID: 454602837}
+  checkBoxes:
+  - {fileID: 1315931103}
+  - {fileID: 589255151}
+  - {fileID: 814513167}
+  - {fileID: 2018980886}
+  - {fileID: 2068038548}
+  - {fileID: 1658627558}
 --- !u!1001 &175016655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2144,6 +2151,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: onlyEdit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &626598065
 GameObject:
@@ -3082,6 +3101,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: onlyEdit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4976,6 +5007,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: onlyEdit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1319125347
 GameObject:
@@ -5847,6 +5890,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: onlyEdit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7325,6 +7380,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: onlyEdit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &2024164433
 GameObject:
@@ -7990,6 +8057,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: onlyEdit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
