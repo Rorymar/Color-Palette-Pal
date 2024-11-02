@@ -10,7 +10,7 @@ public class ButtonManager : MonoBehaviour
     {
         GameObject palette_object = GameObject.Find("PaletteManager");
         palette = (ApplyColor) palette_object.GetComponent(typeof(ApplyColor));
-        print(palette.color1_material.color);
+        //print(palette.color1_material.color);
     }
 
     // Update is called once per frame
