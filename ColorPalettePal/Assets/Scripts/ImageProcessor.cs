@@ -32,9 +32,9 @@ public class ImageProcessor : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        foreach (var material in materials)
-        {
-            material.color = Color.white;
+        for (int i = 0; i < materials.Length; i++){
+            materials[i].color = Color.white;
+            inputFields[i].SetTextWithoutNotify(createHexFromColor(materials[i].color));
         }
     }
 
