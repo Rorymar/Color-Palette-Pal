@@ -1214,9 +1214,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 458189978}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: unlockAllColors
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: setLocksImageToUnlocked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2008,8 +2008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 458189977}
-  - component: {fileID: 458189978}
-  - component: {fileID: 458189979}
+  - component: {fileID: 458189980}
   m_Layer: 5
   m_Name: ButtonManager
   m_TagString: Untagged
@@ -2039,7 +2038,7 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: -26.890558}
   m_SizeDelta: {x: 100, y: 16.006649}
   m_Pivot: {x: 1.6423757, y: -1.9294428}
---- !u!114 &458189978
+--- !u!114 &458189980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2048,19 +2047,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 458189975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684a6bad8e5bc97efacad2b1a77ad93e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &458189979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458189975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c22c9f082ea4d29b635798d0971fd7, type: 3}
+  m_Script: {fileID: 11500000, guid: d0c88776124b34249b3e58b3f383ada5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &471497816
@@ -4594,9 +4581,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 458189978}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: randomizePalette
+      - m_Target: {fileID: 113428954}
+        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
+        m_MethodName: randomizeUnlockedColors
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4854,16 +4841,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 458189979}
-        m_TargetAssemblyTypeName: ToolBackOut, Assembly-CSharp
-        m_MethodName: BackButton
-        m_Mode: 1
+      - m_Target: {fileID: 458189980}
+        m_TargetAssemblyTypeName: SceneTransfer, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: NavMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1186529950
@@ -7846,7 +7833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1937901594
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7910,19 +7897,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1937901596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 458189978}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: unlockAllColors
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1937901596
 MonoBehaviour:
   m_ObjectHideFlags: 0
