@@ -610,16 +610,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610370608}
-        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
-        m_MethodName: CFToPaletteScratch
-        m_Mode: 1
+      - m_Target: {fileID: 610370609}
+        m_TargetAssemblyTypeName: SceneTransfer, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: PaletteFromScratch
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &223543978
@@ -835,16 +835,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610370608}
-        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
-        m_MethodName: CAToColorBlind
-        m_Mode: 1
+      - m_Target: {fileID: 610370609}
+        m_TargetAssemblyTypeName: SceneTransfer, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ColorBlindToggle
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &320502197
@@ -1476,6 +1476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610370607}
   - component: {fileID: 610370608}
+  - component: {fileID: 610370609}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1517,6 +1518,18 @@ MonoBehaviour:
   BaseNav: {fileID: 1372390894}
   CFNav: {fileID: 1848108339}
   CANav: {fileID: 325999347}
+--- !u!114 &610370609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610370606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c88776124b34249b3e58b3f383ada5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672384901
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,16 +3149,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610370608}
-        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
-        m_MethodName: CFToPaletteImage
-        m_Mode: 1
+      - m_Target: {fileID: 610370609}
+        m_TargetAssemblyTypeName: SceneTransfer, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: PaletteFromImage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1440895435
@@ -3673,16 +3686,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610370608}
-        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
-        m_MethodName: CAToAdjustPalette
-        m_Mode: 1
+      - m_Target: {fileID: 610370609}
+        m_TargetAssemblyTypeName: SceneTransfer, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AdjustPalette
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1556773043
@@ -4520,16 +4533,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610370608}
-        m_TargetAssemblyTypeName: NavManager, Assembly-CSharp
-        m_MethodName: CAToImageFilter
-        m_Mode: 1
+      - m_Target: {fileID: 610370609}
+        m_TargetAssemblyTypeName: SceneTransfer, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ImageFilter
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1898933307

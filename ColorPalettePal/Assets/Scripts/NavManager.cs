@@ -47,7 +47,7 @@ public class NavManager : MonoBehaviour
         }
     }
 
-    //Nav Menu Scene Swaps
+    //Nav Menu UI Swaps
     public void BaseToCF()
     {
         SetChildrenActive(BaseNav, false);
@@ -62,45 +62,19 @@ public class NavManager : MonoBehaviour
         NavState = "CA";
     }
 
-    //Creation Features Scene Swaps
+    //Creation Features UI Swaps
     public void CFToBase()
     {
         SetChildrenActive(CFNav, false);
         SetChildrenActive(BaseNav, true);
         NavState = "Base";
     }
-
-    //Swaps scene to the Palette From Scratch Tool
-    public void CFToPaletteScratch()
-    {
-        SceneManager.LoadScene("PaletteFromScratch");
-    }
-
-    //Swaps scene to the Palette From Image Tool
-    public void CFToPaletteImage()
-    {
-        SceneManager.LoadScene("PaletteFromImage");
-    }
     
-    //Accessibility Tools Scene Swaps
+    //Accessibility Tools UI Swaps
     public void CAToBase(){
         SetChildrenActive(CANav, false);
         SetChildrenActive(BaseNav, true);
         NavState = "Base";
     }
 
-    //Swaps scene to the Color Blind Toggle
-    public void CAToColorBlind(){
-        SceneManager.LoadScene("ColorBlindToggle");
-    }
-
-    //Swaps scene to the Palette Adjustor
-    public void CAToAdjustPalette(){
-        SceneManager.LoadScene("AdjustPalette");
-    }
-
-    //Swaps scene to the Image Filter Tool
-    public void CAToImageFilter(){
-        SceneManager.LoadScene("ImageFilter");
-    }
 }
