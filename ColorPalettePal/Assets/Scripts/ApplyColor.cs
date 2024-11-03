@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,9 @@ public class ApplyColor : MonoBehaviour
     private bool col4_locked;
     private bool col5_locked;
     private bool col6_locked;
+
+    [SerializeField]
+    List<GameObject> checkBoxes;
 
     // Start is called before the first frame update
     void Start()
@@ -119,9 +123,26 @@ public class ApplyColor : MonoBehaviour
     }
 
     //Functions to monitor whether a color is toggled or not
+    public void onlyEdit(int chNum)
+    {
+        if(checkBoxes[chNum].GetComponent<UnityEngine.UI.Toggle>().isOn)
+        {
+            for (int i = 0; i < checkBoxes.Count; i++)
+            {
+                if (i != chNum)
+                {
+                    checkBoxes[i].GetComponent<UnityEngine.UI.Toggle>().isOn = false;
+                }
+            }
+        }
+        //print(chNum);
+        return;
+    }
+
     public void toggleColor1(bool canChange1)
     {
         can_change_col1 = !can_change_col1;
+        //print(canChange1);
     }
 
     public void toggleColor2(bool canChange2)
