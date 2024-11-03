@@ -16,6 +16,7 @@ public class ApplyColor : MonoBehaviour
     //List of Color Channel Materials
     [SerializeField]
     List<Material> channelMats;
+
     public FlexibleColorPicker color_picker;
 
     //List of Color Channel input fields
@@ -24,6 +25,7 @@ public class ApplyColor : MonoBehaviour
 
     //Private Variables for changing the colors via color picker
     private List<bool> can_change;
+
     private Color previousColor;
 
     //Private variables for locking / unlocking the colors
@@ -88,64 +90,15 @@ public class ApplyColor : MonoBehaviour
         return;
     }
 
-    public void toggleColor1(bool canChange1)
+    public void toggleColor(int n)
     {
-        can_change[0] = !can_change[0];
-    }
-
-    public void toggleColor2(bool canChange2)
-    {
-        can_change[1] = !can_change[1];
-        //can_change_col2 = !can_change_col2;
-    }
-
-    public void toggleColor3(bool canChange3)
-    {
-        can_change[2] = !can_change[2];
-    }
-
-    public void toggleColor4(bool canChange4)
-    {
-        can_change[3] = !can_change[3];
-    }
-
-    public void toggleColor5(bool canChange5)
-    {
-        can_change[4] = !can_change[4];
-    }
-
-    public void toggleColor6(bool canChange6)
-    {
-        can_change[5] = !can_change[5];
+        can_change[n] = !can_change[n];
     }
 
     //Functions to lock/unlock each color
-    public void unlockCol1(bool lockStatus)
+    public void unlockCol(int n)
     {
-        locked[0] = !locked[0];
-    }
-    public void unlockCol2(bool lockStatus)
-    {
-        locked[1] = !locked[1];
-    }
-    public void unlockCol3(bool lockStatus)
-    {
-        locked[2] = !locked[2];
-    }
-
-    public void unlockCol4(bool lockStatus)
-    {
-        locked[3] = !locked[3];
-    }
-
-    public void unlockCol5(bool lockStatus)
-    {
-        locked[4] = !locked[4];
-    }
-
-    public void unlockCol6(bool lockStatus)
-    {
-        locked[5] = !locked[5];
+        locked[n] = !locked[n];
     }
 
     public void unlockAllCols()
