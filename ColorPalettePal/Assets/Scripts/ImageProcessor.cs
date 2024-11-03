@@ -24,12 +24,12 @@ public class ImageProcessor : MonoBehaviour
         previousTexture = rawImage.texture;
 
         //DELETE WHEN CACHE IS SET UP(?)
-        ResetColors()
+        ResetColors();
     }
 
     void OnApplicationQuit()
     {
-        ResetColors()
+        ResetColors();
     }
 
     // Update is called once per frame
