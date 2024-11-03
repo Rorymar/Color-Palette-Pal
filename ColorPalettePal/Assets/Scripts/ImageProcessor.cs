@@ -24,18 +24,12 @@ public class ImageProcessor : MonoBehaviour
         previousTexture = rawImage.texture;
 
         //DELETE WHEN CACHE IS SET UP(?)
-        for (int i = 0; i < materials.Length; i++){
-            materials[i].color = Color.white;
-            inputFields[i].SetTextWithoutNotify(createHexFromColor(materials[i].color));
-        }
+        ResetColors();
     }
 
     void OnApplicationQuit()
     {
-        for (int i = 0; i < materials.Length; i++){
-            materials[i].color = Color.white;
-            inputFields[i].SetTextWithoutNotify(createHexFromColor(materials[i].color));
-        }
+        ResetColors();
     }
 
     // Update is called once per frame
@@ -55,6 +49,14 @@ public class ImageProcessor : MonoBehaviour
             // Call your method to process the texture
             Debug.Log("Image loaded! Beginning processing...");
             ProcessTexture((Texture2D)rawImage.texture);
+        }
+    }
+
+    private void ResetColors()
+    {
+        for (int i = 0; i < materials.Length; i++){
+            materials[i].color = Color.white;
+            inputFields[i].SetTextWithoutNotify(createHexFromColor(materials[i].color));
         }
     }
 
