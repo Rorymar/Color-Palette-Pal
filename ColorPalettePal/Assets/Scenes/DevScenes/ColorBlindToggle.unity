@@ -6460,19 +6460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c58dee0978ce44ba5dedea1565bba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color1_material: {fileID: 2100000, guid: 3a69ff95ab565af08979db296238e162, type: 2}
-  color2_material: {fileID: 2100000, guid: bf0ba5d15d8366d1681faa052302d322, type: 2}
-  color3_material: {fileID: 2100000, guid: bef28784911b7b3c8b518bb2c55c590e, type: 2}
-  color4_material: {fileID: 2100000, guid: 798e1770a1255ef76aefe5dbd33071ee, type: 2}
-  color5_material: {fileID: 2100000, guid: e778593e66f91b1d3a7a960d40306bc9, type: 2}
-  color6_material: {fileID: 2100000, guid: 004c00894d3594101b27e93713ccc1f9, type: 2}
+  channelMats: []
   color_picker: {fileID: 0}
-  input_field1: {fileID: 526763121}
-  input_field2: {fileID: 2870463}
-  input_field3: {fileID: 376541930}
-  input_field4: {fileID: 194944799}
-  input_field5: {fileID: 1817044119}
-  input_field6: {fileID: 1401236810}
+  input_fields: []
   checkBoxes:
   - {fileID: 0}
   - {fileID: 0}
@@ -6797,6 +6787,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1313709200}
   - {fileID: 1960532398}
   - {fileID: 1353018998}
   - {fileID: 697825587}
@@ -6806,7 +6797,6 @@ RectTransform:
   - {fileID: 446762241}
   - {fileID: 1949481351}
   - {fileID: 1034156091}
-  - {fileID: 1313709200}
   - {fileID: 1375809420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
