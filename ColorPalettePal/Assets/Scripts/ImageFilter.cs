@@ -142,7 +142,6 @@ public class ImageFilter : MonoBehaviour
         filteredImageDisplay.texture = modifiedTexture;
         Debug.Log($"Image processing complete for {currentType}. Displaying modified image.");
     }
-
     public void resetImage(){
         filteredImageDisplay.texture = previousTexture;
         currentType = ColorBlindType.None;
