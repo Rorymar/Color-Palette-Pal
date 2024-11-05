@@ -15,10 +15,11 @@ public class ImageFilter : MonoBehaviour
         Protanopia,
         Deuteranopia,
         Tritanopia,
-        Achromatopsia
+        Achromatopsia,
+        None
     }
 
-    public ColorBlindType currentType = ColorBlindType.Protanopia; // Default type
+    private ColorBlindType currentType = ColorBlindType.None; // Default type
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class ImageFilter : MonoBehaviour
         }
 
         // Check if filteredImageDisplay is assigned
+        
         if (filteredImageDisplay == null)
         {
             Debug.LogError("FilteredImageDisplay is not assigned in the Inspector.");
@@ -44,26 +46,21 @@ public class ImageFilter : MonoBehaviour
         if (rawImage.texture != null)
         {
             previousTexture = rawImage.texture as Texture2D;
-            OnTextureChanged();
         }
     }
 
     void Update()
     {
         // Check if rawImage and its texture are not null and if the texture has changed
-        if (rawImage != null && rawImage.texture != null && rawImage.texture != previousTexture)
+        if (rawImage != null && rawImage.texture != null)
         {
-            previousTexture = rawImage.texture as Texture2D;
-            OnTextureChanged();
-        }
-    }
-
-    private void OnTextureChanged()
-    {
-        if (rawImage.texture != null)
-        {
-            Debug.Log("Image loaded! Beginning processing...");
-            ProcessTexture(previousTexture);
+            if(previousTexture != rawImage.texture){
+                previousTexture = rawImage.texture as Texture2D;
+                filteredImageDisplay.texture = rawImage.texture;
+            }
+            if(filteredImageDisplay.texture == null){
+                filteredImageDisplay.texture = rawImage.texture;
+            }
         }
     }
 
@@ -146,13 +143,25 @@ public class ImageFilter : MonoBehaviour
         Debug.Log($"Image processing complete for {currentType}. Displaying modified image.");
     }
 
+    public void resetImage(){
+        filteredImageDisplay.texture = previousTexture;
+        currentType = ColorBlindType.None;
+        Debug.Log($"Reset image display.");
+    }
+
     // Method to change the color blindness type dynamically
-    public void SetColorBlindType(ColorBlindType type)
+    public void SetColorBlindType(string type)
     {
-        currentType = type;
+        currentType = type switch
+        {
+            "Protanopia" => ColorBlindType.Protanopia,
+            "Deuteranopia" => ColorBlindType.Deuteranopia,
+            "Tritanopia" => ColorBlindType.Tritanopia,
+            "Achromatopsia" => ColorBlindType.Achromatopsia
+        };
         if (rawImage != null && rawImage.texture != null)
         {
-            OnTextureChanged(); // Re-process the image with the new type
+            ProcessTexture(previousTexture); // Re-process the image with the new type
         }
     }
 }
