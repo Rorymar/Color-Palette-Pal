@@ -1872,13 +1872,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 298731312}
   - {fileID: 1774402971}
   - {fileID: 1087952612}
   - {fileID: 833713153}
   - {fileID: 1831807893}
   - {fileID: 768195988}
   - {fileID: 1362027633}
-  - {fileID: 298731312}
   - {fileID: 1994564509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
