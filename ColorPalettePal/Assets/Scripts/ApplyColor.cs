@@ -13,39 +13,23 @@ using Random = System.Random;
 
 public class ApplyColor : MonoBehaviour
 {
-    //Public Variable Materials
-    public Material color1_material;
-    public Material color2_material;
-    public Material color3_material;
-    public Material color4_material;
-    public Material color5_material;
-    public Material color6_material;
+    //List of Color Channel Materials
+    [SerializeField]
+    List<Material> channelMats;
+
     public FlexibleColorPicker color_picker;
 
-    //Public Variable input fields
-    public TMP_InputField input_field1;
-    public TMP_InputField input_field2;
-    public TMP_InputField input_field3;
-    public TMP_InputField input_field4;
-    public TMP_InputField input_field5;
-    public TMP_InputField input_field6;
+    //List of Color Channel input fields
+    [SerializeField]
+    List<TMP_InputField> input_fields;
 
     //Private Variables for changing the colors via color picker
-    private bool can_change_col1;
-    private bool can_change_col2;
-    private bool can_change_col3;
-    private bool can_change_col4;
-    private bool can_change_col5;
-    private bool can_change_col6;
+    private List<bool> can_change;
+
     private Color previousColor;
 
     //Private variables for locking / unlocking the colors
-    private bool col1_locked;
-    private bool col2_locked;
-    private bool col3_locked;
-    private bool col4_locked;
-    private bool col5_locked;
-    private bool col6_locked;
+    private List<bool> locked;
 
     [SerializeField]
     List<GameObject> checkBoxes;
@@ -53,28 +37,22 @@ public class ApplyColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        can_change_col1 = false;
-        can_change_col2 = false;
-        can_change_col3 = false;
-        can_change_col4 = false;
-        can_change_col5 = false;
-        can_change_col6 = false;
+        can_change = new List<bool>();
+        locked = new List<bool>();
+        for (int i = 0; i < 6; i++)
+        {
+            can_change.Add(false);
+            locked.Add(false);
+        }
         unlockAllCols();
-        color1_material.color = color_picker.color;
-        color2_material.color = color_picker.color;
-        color3_material.color = color_picker.color;
-        color4_material.color = color_picker.color;
-        color5_material.color = color_picker.color;
-        color6_material.color = color_picker.color;
-        previousColor = color_picker.color;
 
-        //Set input fields to start
-        input_field1.SetTextWithoutNotify(createHexFromColor(color1_material.color));
-        input_field2.SetTextWithoutNotify(createHexFromColor(color2_material.color));
-        input_field3.SetTextWithoutNotify(createHexFromColor(color3_material.color));
-        input_field4.SetTextWithoutNotify(createHexFromColor(color4_material.color));
-        input_field5.SetTextWithoutNotify(createHexFromColor(color5_material.color));
-        input_field6.SetTextWithoutNotify(createHexFromColor(color6_material.color));
+        //Set channel colors to default and input fields to start
+        for (int i = 0; i < channelMats.Count; i++)
+        {
+            channelMats[i].color = color_picker.color;
+            input_fields[i].SetTextWithoutNotify(createHexFromColor(channelMats[i].color));
+        }
+        previousColor = color_picker.color;
     }
 
     // Update is called once per frame
@@ -82,41 +60,14 @@ public class ApplyColor : MonoBehaviour
     {
         //Checks if each of the colors can be changed, and the current color is not the previous color
         //If this holds, change the color
-        if (can_change_col1 && !previousColor.Equals(color_picker.color))
+        for (int i = 0; i < 6; i++)
         {
-            color1_material.color = color_picker.color;
-            input_field1.SetTextWithoutNotify(createHexFromColor(color1_material.color));
+            if (can_change[i] && !previousColor.Equals(color_picker.color))
+            {
+                channelMats[i].color = color_picker.color;
+                input_fields[i].SetTextWithoutNotify(createHexFromColor(channelMats[i].color));
 
-        }
-
-        if (can_change_col2 && !previousColor.Equals(color_picker.color))
-        {
-            color2_material.color = color_picker.color;
-            input_field2.SetTextWithoutNotify(createHexFromColor(color2_material.color));
-        }
-
-        if (can_change_col3 && !previousColor.Equals(color_picker.color))
-        {
-            color3_material.color = color_picker.color;
-            input_field3.SetTextWithoutNotify(createHexFromColor(color3_material.color));
-        }
-
-        if (can_change_col4 && !previousColor.Equals(color_picker.color))
-        {
-            color4_material.color = color_picker.color;
-            input_field4.SetTextWithoutNotify(createHexFromColor(color4_material.color));
-        }
-
-        if (can_change_col5 && !previousColor.Equals(color_picker.color))
-        {
-            color5_material.color = color_picker.color;
-            input_field5.SetTextWithoutNotify(createHexFromColor(color5_material.color));
-        }
-
-        if (can_change_col6 && !previousColor.Equals(color_picker.color))
-        {
-            color6_material.color = color_picker.color;
-            input_field6.SetTextWithoutNotify(createHexFromColor(color6_material.color));
+            }
         }
 
         previousColor = color_picker.color;
@@ -139,80 +90,28 @@ public class ApplyColor : MonoBehaviour
         return;
     }
 
-    public void toggleColor1(bool canChange1)
+    public void toggleColor(int n)
     {
-        can_change_col1 = !can_change_col1;
-        //print(canChange1);
-    }
-
-    public void toggleColor2(bool canChange2)
-    {
-        can_change_col2 = !can_change_col2;
-    }
-
-    public void toggleColor3(bool canChange3)
-    {
-        can_change_col3 = !can_change_col3;
-    }
-
-    public void toggleColor4(bool canChange4)
-    {
-        can_change_col4 = !can_change_col4;
-    }
-
-    public void toggleColor5(bool canChange5)
-    {
-        can_change_col5 = !can_change_col5;
-    }
-
-    public void toggleColor6(bool canChange6)
-    {
-        can_change_col6 = !can_change_col6;
+        can_change[n] = !can_change[n];
     }
 
     //Functions to lock/unlock each color
-    public void unlockCol1(bool lockStatus)
+    public void unlockCol(int n)
     {
-        col1_locked = !col1_locked;
-    }
-    public void unlockCol2(bool lockStatus)
-    {
-        col2_locked = !col2_locked;
-    }
-    public void unlockCol3(bool lockStatus)
-    {
-        col3_locked = !col3_locked;
-    }
-
-    public void unlockCol4(bool lockStatus)
-    {
-        col4_locked = !col4_locked;
-    }
-
-    public void unlockCol5(bool lockStatus)
-    {
-        col5_locked = !col5_locked;
-    }
-
-    public void unlockCol6(bool lockStatus)
-    {
-        col6_locked = !col6_locked;
+        locked[n] = !locked[n];
     }
 
     public void unlockAllCols()
     {
-        col1_locked = false;
-        print(this.col1_locked);
-        col2_locked = false;
-        col3_locked = false;
-        col4_locked = false;
-        col5_locked = false;
-        col6_locked = false;
+        for(int i = 0; i < 6; i++)
+        {
+            locked[i] = false;
+        }
     }
 
     public void setLocksImageToUnlocked()
     {
-        print("In image, col1: " + col1_locked);
+        //print("In image, col1: " + col1_locked);
         //Place holder before actual lock images
         transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.GetComponent<UnityEngine.UI.Toggle>
             ().isOn = false;
@@ -233,42 +132,42 @@ public class ApplyColor : MonoBehaviour
     {
         if (changed.Length == 7)
         {
-            color1_material.color = createColorFromHex(changed);   
+            channelMats[0].color = createColorFromHex(changed);   
         }
     }
     public void changeCol2Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            color2_material.color = createColorFromHex(changed);   
+            channelMats[1].color = createColorFromHex(changed);   
         }
     }
     public void changeCol3Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            color3_material.color = createColorFromHex(changed);   
+            channelMats[2].color = createColorFromHex(changed);   
         }
     }
     public void changeCol4Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            color4_material.color = createColorFromHex(changed);   
+            channelMats[3].color = createColorFromHex(changed);   
         }
     }
     public void changeCol5Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            color5_material.color = createColorFromHex(changed);   
+            channelMats[4].color = createColorFromHex(changed);   
         }
     }
     public void changeCol6Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            color6_material.color = createColorFromHex(changed);   
+            channelMats[5].color = createColorFromHex(changed);   
         }
     }
 
@@ -279,13 +178,10 @@ public class ApplyColor : MonoBehaviour
         List<bool> locked_list = new List<bool>();
         Random random_num_gen= new Random();
         
-        locked_list.Add(col1_locked);
-        print("Color 1: " + col1_locked);
-        locked_list.Add(col2_locked);
-        locked_list.Add(col3_locked);
-        locked_list.Add(col4_locked);
-        locked_list.Add(col5_locked);
-        locked_list.Add(col6_locked);
+        for(int i = 0; i < 6; ++i)
+        {
+            locked_list.Add(locked[i]);
+        }
         
         for (int i = 0; i < 6; ++i)
         {

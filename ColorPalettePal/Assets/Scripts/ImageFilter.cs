@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ImageFilter : MonoBehaviour
 {
-    public RawImage rawImage;
-    public RawImage filteredImageDisplay;
+    public RawImage rawImage; // Original image input
+    public RawImage filteredImageDisplay; // Display for the processed image
     private Texture2D previousTexture;
 
     // Enum for color blindness types
@@ -15,15 +15,15 @@ public class ImageFilter : MonoBehaviour
         Protanopia,
         Deuteranopia,
         Tritanopia,
-        Achromatopsia
+        Achromatopsia,
+        None
     }
 
-    // Defaulting to protan
-    public ColorBlindType currentType = ColorBlindType.Protanopia;
+    private ColorBlindType currentType = ColorBlindType.None; // Default type
 
     void Start()
     {
-        // Check if rawImage is assigned; if not, try to find it
+        // Check if rawImage is assigned; if not, try to find it on the GameObject
         if (rawImage == null)
         {
             rawImage = GetComponent<RawImage>();
@@ -35,6 +35,7 @@ public class ImageFilter : MonoBehaviour
         }
 
         // Check if filteredImageDisplay is assigned
+        
         if (filteredImageDisplay == null)
         {
             Debug.LogError("FilteredImageDisplay is not assigned in the Inspector.");
@@ -45,26 +46,21 @@ public class ImageFilter : MonoBehaviour
         if (rawImage.texture != null)
         {
             previousTexture = rawImage.texture as Texture2D;
-            OnTextureChanged();
         }
     }
 
     void Update()
     {
         // Check if rawImage and its texture are not null and if the texture has changed
-        if (rawImage != null && rawImage.texture != null && rawImage.texture != previousTexture)
+        if (rawImage != null && rawImage.texture != null)
         {
-            previousTexture = rawImage.texture as Texture2D;
-            OnTextureChanged();
-        }
-    }
-
-    private void OnTextureChanged()
-    {
-        if (rawImage.texture != null)
-        {
-            Debug.Log("Image loaded! Beginning processing...");
-            ProcessTexture(previousTexture);
+            if(previousTexture != rawImage.texture){
+                previousTexture = rawImage.texture as Texture2D;
+                filteredImageDisplay.texture = rawImage.texture;
+            }
+            if(filteredImageDisplay.texture == null){
+                filteredImageDisplay.texture = rawImage.texture;
+            }
         }
     }
 
@@ -99,14 +95,14 @@ public class ImageFilter : MonoBehaviour
             { 0.299f, 0.587f, 0.114f }
         };
 
-        // Select the matrix based on the current type, default to protan if not specified
+        // Select the matrix based on the current type
         float[,] selectedMatrix = currentType switch
         {
             ColorBlindType.Protanopia => protanMatrix,
             ColorBlindType.Deuteranopia => deutanMatrix,
             ColorBlindType.Tritanopia => tritanMatrix,
             ColorBlindType.Achromatopsia => achromatopsiaMatrix,
-            _ => protanMatrix
+            _ => protanMatrix // Default to protan if unspecified
         };
 
         // Create a new texture with the same dimensions as the original
@@ -146,14 +142,25 @@ public class ImageFilter : MonoBehaviour
         filteredImageDisplay.texture = modifiedTexture;
         Debug.Log($"Image processing complete for {currentType}. Displaying modified image.");
     }
+    public void resetImage(){
+        filteredImageDisplay.texture = previousTexture;
+        currentType = ColorBlindType.None;
+        Debug.Log($"Reset image display.");
+    }
 
     // Method to change the color blindness type dynamically
-    public void SetColorBlindType(ColorBlindType type)
+    public void SetColorBlindType(string type)
     {
-        currentType = type;
+        currentType = type switch
+        {
+            "Protanopia" => ColorBlindType.Protanopia,
+            "Deuteranopia" => ColorBlindType.Deuteranopia,
+            "Tritanopia" => ColorBlindType.Tritanopia,
+            "Achromatopsia" => ColorBlindType.Achromatopsia
+        };
         if (rawImage != null && rawImage.texture != null)
         {
-            OnTextureChanged();
+            ProcessTexture(previousTexture); // Re-process the image with the new type
         }
     }
 }
