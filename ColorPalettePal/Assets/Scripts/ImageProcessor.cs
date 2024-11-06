@@ -13,7 +13,10 @@ public class ImageProcessor : MonoBehaviour
     private Texture previousTexture;
     public Material[] materials; // Array to hold your materials
     public TMP_InputField[] inputFields;
-    
+
+    [SerializeField]
+    ColorConverter cc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +59,7 @@ public class ImageProcessor : MonoBehaviour
     {
         for (int i = 0; i < materials.Length; i++){
             materials[i].color = Color.white;
-            inputFields[i].SetTextWithoutNotify(createHexFromColor(materials[i].color));
+            inputFields[i].SetTextWithoutNotify(cc.createHexFromColor(materials[i].color));
         }
     }
 
@@ -138,21 +141,10 @@ public class ImageProcessor : MonoBehaviour
             if (i < colorsToGrab)
             {
                 materials[i].color = selectedColors[i];
-                inputFields[i].SetTextWithoutNotify(createHexFromColor(materials[i].color));
+                inputFields[i].SetTextWithoutNotify(cc.createHexFromColor(materials[i].color));
                 Debug.Log($"Assigned Color: {selectedColors[i]} to Material: {materials[i].name}");
             }
         }
-    }
-
-    //Get hex code of a color
-    private string createHexFromColor(Color color)
-    {
-        int red = (int)(color.r * 255);
-        int green = (int)(color.g * 255);
-        int blue = (int)(color.b * 255);
-        string hex = "#" + red.ToString("X2") + green.ToString("X2")
-                     + blue.ToString("X2");
-        return hex.ToUpper();
     }
 
     //Calculate the degree of similarity between two colors.
