@@ -83,6 +83,9 @@ public class ApplyColor : MonoBehaviour
                 if (i != chNum)
                 {
                     checkBoxes[i].GetComponent<UnityEngine.UI.Toggle>().isOn = false;
+                } else
+                {
+                    color_picker.color = channelMats[i].color;
                 }
             }
         }
