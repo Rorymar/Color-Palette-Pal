@@ -12,6 +12,9 @@ public class ColorBlindnessToggle : MonoBehaviour
     public Slider greenSlider;
     public Slider blueSlider;
 
+    [SerializeField]
+    ColorConverter cc;
+
     // To store the original colors from hex input
     private Color[] originalColors;
 
@@ -95,7 +98,7 @@ public class ColorBlindnessToggle : MonoBehaviour
             colorPanels[i].color = adjustedColor;
 
             // Update hex input field to display the current color
-            hexInputs[i].SetTextWithoutNotify(ColorToHex(adjustedColor));
+            hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
         }
     }
 
@@ -118,14 +121,5 @@ public class ColorBlindnessToggle : MonoBehaviour
             case 4: return 0.0f;  // 100% blindness, complete gray
             default: return 1.0f; // Fallback to full color
         }
-    }
-
-    // Helper method to convert Color to hex string
-    private string ColorToHex(Color color)
-    {
-        int red = Mathf.RoundToInt(color.r * 255);
-        int green = Mathf.RoundToInt(color.g * 255);
-        int blue = Mathf.RoundToInt(color.b * 255);
-        return $"#{red:X2}{green:X2}{blue:X2}";
     }
 }

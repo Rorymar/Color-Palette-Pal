@@ -34,6 +34,9 @@ public class ApplyColor : MonoBehaviour
     [SerializeField]
     List<GameObject> checkBoxes;
 
+    [SerializeField]
+    ColorConverter cc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +53,7 @@ public class ApplyColor : MonoBehaviour
         for (int i = 0; i < channelMats.Count; i++)
         {
             channelMats[i].color = color_picker.color;
-            input_fields[i].SetTextWithoutNotify(createHexFromColor(channelMats[i].color));
+            input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
         }
         previousColor = color_picker.color;
     }
@@ -65,7 +68,7 @@ public class ApplyColor : MonoBehaviour
             if (can_change[i] && !previousColor.Equals(color_picker.color))
             {
                 channelMats[i].color = color_picker.color;
-                input_fields[i].SetTextWithoutNotify(createHexFromColor(channelMats[i].color));
+                input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
 
             }
         }
@@ -135,42 +138,42 @@ public class ApplyColor : MonoBehaviour
     {
         if (changed.Length == 7)
         {
-            channelMats[0].color = createColorFromHex(changed);   
+            channelMats[0].color = cc.createColorFromHex(changed);   
         }
     }
     public void changeCol2Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[1].color = createColorFromHex(changed);   
+            channelMats[1].color = cc.createColorFromHex(changed);   
         }
     }
     public void changeCol3Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[2].color = createColorFromHex(changed);   
+            channelMats[2].color = cc.createColorFromHex(changed);   
         }
     }
     public void changeCol4Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[3].color = createColorFromHex(changed);   
+            channelMats[3].color = cc.createColorFromHex(changed);   
         }
     }
     public void changeCol5Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[4].color = createColorFromHex(changed);   
+            channelMats[4].color = cc.createColorFromHex(changed);   
         }
     }
     public void changeCol6Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[5].color = createColorFromHex(changed);   
+            channelMats[5].color = cc.createColorFromHex(changed);   
         }
     }
 
@@ -201,27 +204,8 @@ public class ApplyColor : MonoBehaviour
                 Color col_to_set = new Color((float)red, (float)blue, (float)green);
                 mat_list[i].color = col_to_set;
                 transform.GetChild(i).gameObject.transform.GetChild(2).gameObject.
-                    GetComponent<TMP_InputField>().text = createHexFromColor(col_to_set);
+                    GetComponent<TMP_InputField>().text = cc.createHexFromColor(col_to_set);
             }
         }
-    }
-    
-    //Private functions used by others
-    private Color createColorFromHex(string hex)
-    {
-        var red = int.Parse(hex.Substring(1, 2), NumberStyles.HexNumber) / 255f;
-        var green = int.Parse(hex.Substring(3, 2), NumberStyles.HexNumber) / 255f;
-        var blue = int.Parse(hex.Substring(5, 2), NumberStyles.HexNumber) / 255f;
-        return new Color(red, green, blue);
-    }
-
-    private string createHexFromColor(Color color)
-    {
-        int red = (int)(color.r * 255);
-        int green = (int)(color.g * 255);
-        int blue = (int)(color.b * 255);
-        string hex = "#" + red.ToString("X2") + green.ToString("X2")
-                     + blue.ToString("X2");
-        return hex.ToUpper();
     }
 }
