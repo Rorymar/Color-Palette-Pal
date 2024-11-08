@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322576199}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
         m_MethodName: changeCol5Hex
         m_Mode: 0
@@ -1754,7 +1754,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 322576198}
-  - component: {fileID: 322576199}
   m_Layer: 5
   m_Name: PaletteManager
   m_TagString: Untagged
@@ -1787,29 +1786,6 @@ RectTransform:
   m_AnchoredPosition: {x: 100.00006, y: 0}
   m_SizeDelta: {x: 180, y: 130}
   m_Pivot: {x: 0.72819436, y: 0.66506755}
---- !u!114 &322576199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322576197}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7c58dee0978ce44ba5dedea1565bba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  channelMats: []
-  color_picker: {fileID: 0}
-  input_fields: []
-  checkBoxes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cc: {fileID: 0}
 --- !u!1 &325701634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,7 +2361,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1537037927}
   m_Father: {fileID: 1280020372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3207,7 +3184,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322576199}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
         m_MethodName: changeCol4Hex
         m_Mode: 0
@@ -3813,7 +3790,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322576199}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
         m_MethodName: changeCol3Hex
         m_Mode: 0
@@ -4259,7 +4236,6 @@ RectTransform:
   - {fileID: 727640526}
   - {fileID: 269632541}
   - {fileID: 566667700}
-  - {fileID: 1537037927}
   - {fileID: 143667755}
   - {fileID: 1675502104}
   - {fileID: 1234763947}
@@ -4559,7 +4535,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322576199}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
         m_MethodName: changeCol1Hex
         m_Mode: 0
@@ -4746,7 +4722,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322576199}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
         m_MethodName: changeCol2Hex
         m_Mode: 0
@@ -5173,16 +5149,16 @@ RectTransform:
   m_GameObject: {fileID: 1537037926}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4640384, y: 0.4640384, z: 0.4640384}
+  m_LocalScale: {x: 0.46403843, y: 0.46403843, z: 0.46403843}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 295169213}
-  m_Father: {fileID: 1280020372}
+  m_Father: {fileID: 566667700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.34500003, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302.1876, y: -195.41959}
-  m_SizeDelta: {x: 101.24222, y: 77.4315}
+  m_AnchoredPosition: {x: -356.43756, y: -195.41959}
+  m_SizeDelta: {x: 209.74219, y: 77.4315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1537037928
 MonoBehaviour:
@@ -5893,7 +5869,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322576199}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
         m_MethodName: changeCol6Hex
         m_Mode: 0
