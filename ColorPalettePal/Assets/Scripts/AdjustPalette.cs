@@ -6,7 +6,8 @@ using TMPro;
 
 public class ColorBlindnessAdjuster : MonoBehaviour
 {
-    public TMP_InputField[] hexInputs;
+    [SerializeField]
+    TMP_InputField[] hexInputs;
     public Image[] colorPanels;
     public Slider protanSlider;
     public Slider deutanSlider;
