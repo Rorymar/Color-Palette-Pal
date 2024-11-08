@@ -16,6 +16,9 @@ public class ColorBlindnessAdjuster : MonoBehaviour
     private Color[] originalColors;
     private string[] originalHexCodes = { "#F1E8B8", "#1F271B", "#19647E", "#28AFB0", "#BF0667", "#78FFBB" };
 
+    [SerializeField]
+    ColorConverter cc;
+
     void Start()
     {
         // Initialize the original colors based on the starting hex codes
@@ -58,16 +61,18 @@ public class ColorBlindnessAdjuster : MonoBehaviour
         }
     }
 
+    //Applies the color blindness effect to the colors
     private void ApplyColorBlindnessFilter(string type)
     {
         for (int i = 0; i < colorPanels.Length; i++)
         {
             Color adjustedColor = AdjustForColorBlindness(originalColors[i], type);
             colorPanels[i].color = adjustedColor;
-            hexInputs[i].SetTextWithoutNotify(ColorToHex(adjustedColor));
+            hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
         }
     }
 
+    //Returns colors to their original statee
     private void RevertToOriginalColors()
     {
         for (int i = 0; i < colorPanels.Length; i++)
@@ -75,15 +80,6 @@ public class ColorBlindnessAdjuster : MonoBehaviour
             colorPanels[i].color = originalColors[i];
             hexInputs[i].SetTextWithoutNotify(originalHexCodes[i]);
         }
-    }
-
-    // Helper function to convert a color to hex string
-    private string ColorToHex(Color color)
-    {
-        int red = Mathf.RoundToInt(color.r * 255);
-        int green = Mathf.RoundToInt(color.g * 255);
-        int blue = Mathf.RoundToInt(color.b * 255);
-        return $"#{red:X2}{green:X2}{blue:X2}";
     }
 
     // Adjust a color based on the selected type of color blindness
