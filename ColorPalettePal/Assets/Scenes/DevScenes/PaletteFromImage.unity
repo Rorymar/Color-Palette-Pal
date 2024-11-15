@@ -203,9 +203,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol3Hex
+      - m_Target: {fileID: 104492466}
+        m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
+        m_MethodName: updateColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -512,8 +512,9 @@ GameObject:
   - component: {fileID: 104492463}
   - component: {fileID: 104492465}
   - component: {fileID: 104492464}
+  - component: {fileID: 104492466}
   m_Layer: 5
-  m_Name: Color3Panal
+  m_Name: Color3Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,6 +577,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104492462}
   m_CullTransparentMesh: 1
+--- !u!114 &104492466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104492462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c752eb5f420d44bdbbb7ca4dfcf13444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 356974440}
 --- !u!1 &109360018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1080,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1014015895}
-  m_Father: {fileID: 1938138401}
+  m_Father: {fileID: 1896431626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1112,7 +1126,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 270434449}
   m_OnClick:
     m_PersistentCalls:
@@ -2453,6 +2467,7 @@ GameObject:
   - component: {fileID: 572008801}
   - component: {fileID: 572008803}
   - component: {fileID: 572008802}
+  - component: {fileID: 572008804}
   m_Layer: 5
   m_Name: Color1Panel
   m_TagString: Untagged
@@ -2517,6 +2532,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572008800}
   m_CullTransparentMesh: 1
+--- !u!114 &572008804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572008800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c752eb5f420d44bdbbb7ca4dfcf13444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 356974440}
 --- !u!1 &581042712
 GameObject:
   m_ObjectHideFlags: 0
@@ -3252,9 +3280,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol4Hex
+      - m_Target: {fileID: 902683455}
+        m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
+        m_MethodName: updateColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3758,9 +3786,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol5Hex
+      - m_Target: {fileID: 1477799539}
+        m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
+        m_MethodName: updateColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3927,6 +3955,8 @@ MonoBehaviour:
   - {fileID: 704267026}
   - {fileID: 797359233}
   - {fileID: 1914184046}
+  regenButtonObj: {fileID: 1814199305}
+  saveButtonObj: {fileID: 270434446}
   cc: {fileID: 356974440}
 --- !u!1 &838578109
 GameObject:
@@ -4202,8 +4232,9 @@ GameObject:
   - component: {fileID: 902683452}
   - component: {fileID: 902683454}
   - component: {fileID: 902683453}
+  - component: {fileID: 902683455}
   m_Layer: 5
-  m_Name: Color4Panal
+  m_Name: Color4Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4266,6 +4297,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902683451}
   m_CullTransparentMesh: 1
+--- !u!114 &902683455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902683451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c752eb5f420d44bdbbb7ca4dfcf13444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 356974440}
 --- !u!1 &907866270
 GameObject:
   m_ObjectHideFlags: 0
@@ -6417,9 +6461,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol1Hex
+      - m_Target: {fileID: 572008804}
+        m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
+        m_MethodName: updateColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7260,8 +7304,9 @@ GameObject:
   - component: {fileID: 1477799536}
   - component: {fileID: 1477799538}
   - component: {fileID: 1477799537}
+  - component: {fileID: 1477799539}
   m_Layer: 5
-  m_Name: Color5Panal
+  m_Name: Color5Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7324,6 +7369,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477799535}
   m_CullTransparentMesh: 1
+--- !u!114 &1477799539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477799535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c752eb5f420d44bdbbb7ca4dfcf13444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 356974440}
 --- !u!1 &1525643878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7993,8 +8051,9 @@ GameObject:
   - component: {fileID: 1618982282}
   - component: {fileID: 1618982284}
   - component: {fileID: 1618982283}
+  - component: {fileID: 1618982285}
   m_Layer: 5
-  m_Name: Color6Panal
+  m_Name: Color6Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8057,6 +8116,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618982281}
   m_CullTransparentMesh: 1
+--- !u!114 &1618982285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618982281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c752eb5f420d44bdbbb7ca4dfcf13444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 356974440}
 --- !u!1 &1624191113
 GameObject:
   m_ObjectHideFlags: 0
@@ -8577,8 +8649,9 @@ GameObject:
   - component: {fileID: 1718073413}
   - component: {fileID: 1718073415}
   - component: {fileID: 1718073414}
+  - component: {fileID: 1718073416}
   m_Layer: 5
-  m_Name: Color2Panal
+  m_Name: Color2Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8641,6 +8714,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718073412}
   m_CullTransparentMesh: 1
+--- !u!114 &1718073416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718073412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c752eb5f420d44bdbbb7ca4dfcf13444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 356974440}
 --- !u!1 &1748511399
 GameObject:
   m_ObjectHideFlags: 0
@@ -9299,7 +9385,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1814199308}
   m_OnClick:
     m_PersistentCalls:
@@ -9710,6 +9796,7 @@ RectTransform:
   - {fileID: 974750564}
   - {fileID: 1317752368}
   - {fileID: 1814199306}
+  - {fileID: 270434447}
   m_Father: {fileID: 1938138401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10029,9 +10116,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol6Hex
+      - m_Target: {fileID: 1618982285}
+        m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
+        m_MethodName: updateColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10235,7 +10322,6 @@ RectTransform:
   - {fileID: 99754927}
   - {fileID: 1768037883}
   - {fileID: 1855738718}
-  - {fileID: 270434447}
   - {fileID: 651754019}
   - {fileID: 1986474395}
   - {fileID: 109360019}
@@ -10588,9 +10674,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol2Hex
+      - m_Target: {fileID: 1718073416}
+        m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
+        m_MethodName: updateColor
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

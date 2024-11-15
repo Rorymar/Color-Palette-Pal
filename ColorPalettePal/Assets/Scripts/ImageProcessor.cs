@@ -6,8 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class ImageProcessor : MonoBehaviour
 {
     public RawImage rawImage; // Assign in the Inspector
@@ -15,6 +13,14 @@ public class ImageProcessor : MonoBehaviour
     private List<Color> colorCounts;
     public Material[] materials; // Array to hold your materials
     public TMP_InputField[] inputFields;
+
+    [SerializeField]
+    GameObject regenButtonObj;
+    private Button regenButton;
+
+    [SerializeField]
+    GameObject saveButtonObj;
+    private Button saveButton;
 
     [SerializeField]
     ColorConverter cc;
@@ -28,6 +34,18 @@ public class ImageProcessor : MonoBehaviour
         }
         previousTexture = rawImage.texture;
 
+        if (regenButton == null){
+            regenButton = regenButtonObj.GetComponent<Button>();
+        }
+        regenButton.interactable = false;
+        /*
+        //Add when save implemented
+        if (saveButton == null){
+            saveButton = saveButtonObj.GetComponent<Button>();
+        }
+        saveButton.interactable = false;
+        */
+
         //DELETE WHEN CACHE IS SET UP(?)
         ResetColors();
     }
@@ -35,6 +53,9 @@ public class ImageProcessor : MonoBehaviour
     //Triggers when application quits
     void OnApplicationQuit()
     {
+        regenButton.interactable = false;
+        //TBA when Save is Implemented:
+        //saveButton.GetComponent<Button>().interactable = false;
         ResetColors();
     }
 
@@ -43,7 +64,6 @@ public class ImageProcessor : MonoBehaviour
     {
         if (rawImage.texture != previousTexture)
         {
-            previousTexture = rawImage.texture;
             OnTextureChanged();
         }
     }
@@ -55,6 +75,12 @@ public class ImageProcessor : MonoBehaviour
         {
             //Call method to process texture
             Debug.Log("Image loaded! Beginning processing...");
+
+            regenButton.interactable = true;
+            //TBA when Save is Implemented:
+            //saveButton.interactable = true; 
+            
+            previousTexture = rawImage.texture;
             ProcessTexture((Texture2D)rawImage.texture);
         }
     }
