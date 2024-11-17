@@ -53,8 +53,10 @@ public class PaletteSaver : MonoBehaviour, IPointerDownHandler
         save_data = "Generated Palette:\n";
         for (int i = 0; i < hex_inputs.Count; i++)
         {
-            save_data += hex_inputs[i].text;
-            if (i < hex_inputs.Count - 1)
+            if(hex_inputs[i].text != "Hex Code"){
+                save_data += hex_inputs[i].text;
+            }
+            if (i < hex_inputs.Count - 1 && hex_inputs[i+1].text != "Hex Code")
             {
                 save_data += "\n";
             }
