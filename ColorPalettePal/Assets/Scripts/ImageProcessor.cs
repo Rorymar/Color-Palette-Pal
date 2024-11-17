@@ -377,7 +377,10 @@ public class ImageProcessor : MonoBehaviour
             if (i < selectedColors.Count)
             {
                 materials[i].color = selectedColors[i];
-                inputFields[i].SetTextWithoutNotify(cc.createHexFromColor(materials[i].color));
+                inputFields[i].SetTextWithoutNotify("Hex Code");
+                if(materials[i].color != Color.clear){
+                    inputFields[i].SetTextWithoutNotify(cc.createHexFromColor(materials[i].color));
+                }
                 //Debug.Log($"Assigned Color: {selectedColors[i]} to Material: {materials[i].name}");
             }
         }

@@ -1117,6 +1117,7 @@ GameObject:
   - component: {fileID: 270434450}
   - component: {fileID: 270434449}
   - component: {fileID: 270434448}
+  - component: {fileID: 270434451}
   m_Layer: 5
   m_Name: BtnSavePalette
   m_TagString: Untagged
@@ -1226,6 +1227,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270434446}
   m_CullTransparentMesh: 1
+--- !u!114 &270434451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270434446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceea45b953e159887a8026858799d93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hex_inputs:
+  - {fileID: 1312842856}
+  - {fileID: 1985626242}
+  - {fileID: 40390017}
+  - {fileID: 704267026}
+  - {fileID: 797359233}
+  - {fileID: 1914184046}
 --- !u!1 &271180242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,6 +4094,7 @@ MonoBehaviour:
   - {fileID: 651754018}
   - {fileID: 109360018}
   - {fileID: 1986474394}
+  - {fileID: 270434446}
   cc: {fileID: 356974440}
 --- !u!1 &838578109
 GameObject:
