@@ -3,14 +3,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ColorBlindnessToggle : MonoBehaviour
+public class ColorToggle : MonoBehaviour
 {
-    // Public references for the UI components
-    public TMP_InputField[] hexInputs;
-    public Image[] colorPanels;
-    public Slider redSlider;
-    public Slider greenSlider;
-    public Slider blueSlider;
+    // Serialized Fields for the UI components
+    [SerializeField]
+    TMP_InputField[] hexInputs;
+
+    [SerializeField]
+    Image[] colorPanels;
+
+    [SerializeField]
+    Slider redSlider;
+
+    [SerializeField]
+    Slider greenSlider;
+
+    [SerializeField]
+    Slider blueSlider;
 
     [SerializeField]
     ColorConverter cc;
@@ -42,13 +51,13 @@ public class ColorBlindnessToggle : MonoBehaviour
         }
 
         // Keep up with slider changes
-        redSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
-        greenSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
-        blueSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
+        //redSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
+        //greenSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
+        //blueSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
     }
 
     // Convert hex to color and update panel color
-    private void UpdatePanelColor(int index)
+    public void UpdatePanelColor(int index)
     {
         // Bounds check to prevent out-of-range errors
         if (index < 0 || index >= hexInputs.Length || index >= colorPanels.Length)
@@ -72,7 +81,7 @@ public class ColorBlindnessToggle : MonoBehaviour
     }
 
     // Adjust colors based on slider values
-    private void UpdateColors()
+    public void UpdateColors()
     {
         // Convert sliders to factor
         float redFactor = GetFactorFromSliderValue((int)redSlider.value);
