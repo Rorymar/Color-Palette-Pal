@@ -41,13 +41,6 @@ public class ImageProcessor : MonoBehaviour
             buttons[i] = buttonObjects[i].GetComponent<Button>();
             buttons[i].interactable = false;
         }
-        /*
-        //Add when save implemented
-        if (saveButton == null){
-            saveButton = saveButtonObj.GetComponent<Button>();
-        }
-        saveButton.interactable = false;
-        */
 
         //Create the Black Ban List
         blackBanList = new List<string>();
@@ -119,7 +112,6 @@ public class ImageProcessor : MonoBehaviour
             Debug.Log("Image loaded! Beginning processing...");
 
             for(int i = 0; i < buttonObjects.Length; i++){
-                buttons[i] = buttonObjects[i].GetComponent<Button>();
                 buttons[i].interactable = true;
             }
             
