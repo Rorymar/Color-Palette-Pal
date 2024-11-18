@@ -24,6 +24,9 @@ public class ColorToggle : MonoBehaviour
     Slider blueSlider;
 
     [SerializeField]
+    Slider monoSlider;
+
+    [SerializeField]
     TMP_Text colorBlindnessType;
 
     [SerializeField]
@@ -96,6 +99,7 @@ public class ColorToggle : MonoBehaviour
         float redFactor = GetFactorFromSliderValue((int)redSlider.value);
         float greenFactor = GetFactorFromSliderValue((int)greenSlider.value);
         float blueFactor = GetFactorFromSliderValue((int)blueSlider.value);
+        float monoFactor = GetFactorFromSliderValue((int)monoSlider.value);
 
         for (int i = 0; i < colorPanels.Length; i++)
         {
@@ -106,10 +110,21 @@ public class ColorToggle : MonoBehaviour
             // Start with original color
             Color color = originalColors[i];
 
-            // Apply partial color blindness
-            float adjustedRed = color.r * redFactor + (1 - redFactor) * GetGrayScale(color);
-            float adjustedGreen = color.g * greenFactor + (1 - greenFactor) * GetGrayScale(color);
-            float adjustedBlue = color.b * blueFactor + (1 - blueFactor) * GetGrayScale(color);
+            float adjustedRed;
+            float adjustedGreen;
+            float adjustedBlue;
+            if (monoFactor == 1f)
+            {
+                // Apply partial color blindness
+                adjustedRed = color.r * redFactor + (1 - redFactor) * GetGrayScale(color);
+                adjustedGreen = color.g * greenFactor + (1 - greenFactor) * GetGrayScale(color);
+                adjustedBlue = color.b * blueFactor + (1 - blueFactor) * GetGrayScale(color);
+            } else {
+                // Apply total color blindness
+                adjustedRed = color.r * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedGreen = color.g * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedBlue = color.b * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+            }
 
             // Update color panel with adjusted color
             Color adjustedColor = new Color(adjustedRed, adjustedGreen, adjustedBlue, color.a);
@@ -126,6 +141,7 @@ public class ColorToggle : MonoBehaviour
         { // Changing Red Slider
             greenSlider.value = 0;
             blueSlider.value = 0;
+            monoSlider.value = 0;
 
             if (redSlider.value == 4)
             {
@@ -142,6 +158,7 @@ public class ColorToggle : MonoBehaviour
         { // Changing Green Slider
             redSlider.value = 0;
             blueSlider.value = 0;
+            monoSlider.value = 0;
 
             if (greenSlider.value == 4)
             {
@@ -156,10 +173,11 @@ public class ColorToggle : MonoBehaviour
                 colorBlindnessType.text = "Normal Vision";
             }
         }
-        else
+        else if (numSlide == 3)
         { // Changing Blue Slider
             redSlider.value = 0;
             greenSlider.value = 0;
+            monoSlider.value = 0;
 
             if (blueSlider.value == 4)
             {
@@ -168,6 +186,25 @@ public class ColorToggle : MonoBehaviour
             else if (blueSlider.value >= 2)
             {
                 colorBlindnessType.text = "Tritanomaly";
+            }
+            else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
+        }
+        else
+        { // Changing Monochrome Slider
+            redSlider.value = 0;
+            greenSlider.value = 0;
+            blueSlider.value = 0;
+
+            if (monoSlider.value == 4)
+            {
+                colorBlindnessType.text = "Achromatopsia";
+            }
+            else if (monoSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Achromatomaly";
             }
             else
             {
