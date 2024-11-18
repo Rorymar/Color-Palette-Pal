@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.InteropServices;
 
 public class ColorToggle : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ColorToggle : MonoBehaviour
     TMP_InputField[] hexInputs;
 
     [SerializeField]
-    Image[] colorPanels;
+    Material[] colorPanels;
 
     [SerializeField]
     Slider redSlider;
@@ -67,8 +68,10 @@ public class ColorToggle : MonoBehaviour
         }
 
         string hexCode = hexInputs[index].text;
-        if (ColorUtility.TryParseHtmlString(hexCode, out Color color))
+        print(hexCode);
+        if (ColorUtility.TryParseHtmlString(hexCode, out Color color1))
         {
+            Color color = cc.createColorFromHex(hexCode);
             // Store original color, update panel, apply color blindness adjustments
             originalColors[index] = color;
             colorPanels[index].color = color;

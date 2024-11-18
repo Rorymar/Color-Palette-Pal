@@ -202,19 +202,7 @@ MonoBehaviour:
   m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1960532399}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol2Hex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -611,19 +599,7 @@ MonoBehaviour:
   m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1960532399}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol4Hex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1325,19 +1301,7 @@ MonoBehaviour:
   m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1960532399}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol3Hex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1852,19 +1816,7 @@ MonoBehaviour:
   m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1960532399}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol1Hex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -4572,19 +4524,7 @@ MonoBehaviour:
   m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1960532399}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol6Hex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -5880,19 +5820,7 @@ MonoBehaviour:
   m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1960532399}
-        m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol5Hex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -6233,12 +6161,12 @@ MonoBehaviour:
   - {fileID: 1817044119}
   - {fileID: 1401236810}
   colorPanels:
-  - {fileID: 1019064048}
-  - {fileID: 1693561079}
-  - {fileID: 2060206052}
-  - {fileID: 1822677727}
-  - {fileID: 306115489}
-  - {fileID: 1474496722}
+  - {fileID: 2100000, guid: 2e88cf3c1febf45b18ea5472b121f9ee, type: 2}
+  - {fileID: 2100000, guid: 345c8ee4ee7834fc28bfc6e42bbbe70b, type: 2}
+  - {fileID: 2100000, guid: 875eeb58e97a145cc9ba30a9a1e0df23, type: 2}
+  - {fileID: 2100000, guid: a53497a37865a4494af984b39b536488, type: 2}
+  - {fileID: 2100000, guid: 11e6be705b0ec404298d69f8605b6ea6, type: 2}
+  - {fileID: 2100000, guid: cec1fba1df92a4294a9136cffe84b48d, type: 2}
   redSlider: {fileID: 446762242}
   greenSlider: {fileID: 1949481352}
   blueSlider: {fileID: 1034156092}
@@ -6373,9 +6301,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1960532398}
-  - component: {fileID: 1960532399}
   m_Layer: 5
-  m_Name: PaletteManager
+  m_Name: Palette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6406,29 +6333,6 @@ RectTransform:
   m_AnchoredPosition: {x: 100.00006, y: -0.000030517578}
   m_SizeDelta: {x: 180, y: 130}
   m_Pivot: {x: 0.72819436, y: 0.66506755}
---- !u!114 &1960532399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960532397}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7c58dee0978ce44ba5dedea1565bba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  channelMats: []
-  color_picker: {fileID: 0}
-  input_fields: []
-  checkBoxes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cc: {fileID: 0}
 --- !u!1 &1966612034
 GameObject:
   m_ObjectHideFlags: 0
