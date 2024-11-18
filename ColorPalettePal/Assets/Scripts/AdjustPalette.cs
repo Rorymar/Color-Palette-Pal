@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// Essentially dupe of the color toggle with adjustments for the sliders to be the blindness instead of just the rgb options
-
+// Script for adjusting palette for color blindness
 public class ColorBlindnessAdjuster : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public TMP_InputField[] hexInputs;
     public Image[] colorPanels;
     public Slider protanSlider;
@@ -16,73 +16,191 @@ public class ColorBlindnessAdjuster : MonoBehaviour
     private Color[] originalColors;
     private string[] originalHexCodes = { "#F1E8B8", "#1F271B", "#19647E", "#28AFB0", "#BF0667", "#78FFBB" };
 
+=======
+    // all initializations for sliders (backgrounds and text) as well as palette panels and hex code fields
     [SerializeField]
-    ColorConverter cc;
+    private TMP_InputField[] hexInputs;
+>>>>>>> Stashed changes
+    [SerializeField]
+    private Image[] colorPanels;
+    [SerializeField]
+    private Slider protanSlider, deutanSlider, tritanSlider, achromatopsiaSlider;
+    [SerializeField]
+    private Image protanBackground, deutanBackground, tritanBackground, achromatopsiaBackground;
+    [SerializeField]
+    private TMP_Text protanOnText, protanOffText;
+    [SerializeField]
+    private TMP_Text deutanOnText, deutanOffText;
+    [SerializeField]
+    private TMP_Text tritanOnText, tritanOffText;
+    [SerializeField]
+    private TMP_Text achromatopsiaOnText, achromatopsiaOffText;
+    [SerializeField]
+    private ColorConverter cc;
 
-    void Start()
+    // helper initializations: tracks user-entered colors (nullable for empty fields) and bool flag for if toggle is on
+    private Color?[] userColors;
+    private bool isFilterActive = false;
+
+    private void Start()
     {
-        // Initialize the original colors based on the starting hex codes
-        originalColors = new Color[originalHexCodes.Length];
-        for (int i = 0; i < originalHexCodes.Length; i++)
+        // initialize user colors
+        userColors = new Color?[hexInputs.Length];
+
+        // initialize hex input fields and color panels
+        for (int i = 0; i < hexInputs.Length; i++)
         {
-            ColorUtility.TryParseHtmlString(originalHexCodes[i], out originalColors[i]);
-            hexInputs[i].text = originalHexCodes[i];
-            colorPanels[i].color = originalColors[i];
+            // start with empty fields and white panels
+            hexInputs[i].text = "";
+            colorPanels[i].color = Color.white;
         }
 
-        // Attach listeners to sliders
-        protanSlider.onValueChanged.AddListener(delegate { OnSliderChanged(protanSlider, "Protan"); });
-        deutanSlider.onValueChanged.AddListener(delegate { OnSliderChanged(deutanSlider, "Deutan"); });
-        tritanSlider.onValueChanged.AddListener(delegate { OnSliderChanged(tritanSlider, "Tritan"); });
-        achromatopsiaSlider.onValueChanged.AddListener(delegate { OnSliderChanged(achromatopsiaSlider, "Achromatopsia"); });
+        // initialize slider visuals
+        UpdateSliderVisuals(protanSlider, protanBackground, protanOnText, protanOffText);
+        UpdateSliderVisuals(deutanSlider, deutanBackground, deutanOnText, deutanOffText);
+        UpdateSliderVisuals(tritanSlider, tritanBackground, tritanOnText, tritanOffText);
+        UpdateSliderVisuals(achromatopsiaSlider, achromatopsiaBackground, achromatopsiaOnText, achromatopsiaOffText);
     }
 
-    private void OnSliderChanged(Slider activeSlider, string type)
+    private void Update()
     {
-        // Ensure only one slider can be active at a time
-        if (activeSlider.value == 1)
+        // only process user input when no toggles are active
+        if (!isFilterActive)
         {
-            // Set all other sliders to 0
-            protanSlider.value = (activeSlider == protanSlider) ? 1 : 0;
-            deutanSlider.value = (activeSlider == deutanSlider) ? 1 : 0;
-            tritanSlider.value = (activeSlider == tritanSlider) ? 1 : 0;
-            achromatopsiaSlider.value = (activeSlider == achromatopsiaSlider) ? 1 : 0;
-
-            // Apply color blindness filter based on selected type
-            ApplyColorBlindnessFilter(type);
-        }
-        else
-        {
-            // If no slider is set to 1, revert to original colors
-            if (protanSlider.value == 0 && deutanSlider.value == 0 && tritanSlider.value == 0 && achromatopsiaSlider.value == 0)
+            for (int i = 0; i < hexInputs.Length; i++)
             {
-                RevertToOriginalColors();
+                string hexText = hexInputs[i].text.Trim();
+
+                // if input is cleared by user, reset that color
+                if (string.IsNullOrEmpty(hexText))
+                {
+                    ResetColorPanel(i);
+                    continue;
+                }
+
+                // update color, throw invalid hex error in console if not valid
+                try
+                {
+                    Color newColor = cc.createColorFromHex(hexText);
+                    if (!userColors[i].HasValue || newColor != userColors[i].Value)
+                    {
+                        UpdateColorPanel(i, newColor);
+                    }
+                }
+                catch
+                {
+                    Debug.LogWarning($"Invalid hex code entered in input {i}: {hexText}");
+                }
             }
         }
     }
 
-    //Applies the color blindness effect to the colors
+    // updating what happens when slider changes, visually and functionally
+    public void OnProtanSliderChanged(float value)
+    {
+        HandleSliderChange(protanSlider, "Protan", value);
+        UpdateSliderVisuals(protanSlider, protanBackground, protanOnText, protanOffText);
+    }
+
+    public void OnDeutanSliderChanged(float value)
+    {
+        HandleSliderChange(deutanSlider, "Deutan", value);
+        UpdateSliderVisuals(deutanSlider, deutanBackground, deutanOnText, deutanOffText);
+    }
+
+    public void OnTritanSliderChanged(float value)
+    {
+        HandleSliderChange(tritanSlider, "Tritan", value);
+        UpdateSliderVisuals(tritanSlider, tritanBackground, tritanOnText, tritanOffText);
+    }
+
+    public void OnAchromatopsiaSliderChanged(float value)
+    {
+        HandleSliderChange(achromatopsiaSlider, "Achromatopsia", value);
+        UpdateSliderVisuals(achromatopsiaSlider, achromatopsiaBackground, achromatopsiaOnText, achromatopsiaOffText);
+    }
+
+    // handling what happens when a slider changes functionally
+    //   resets all other toggles, adds flag that toggle is active, and make adjustments based off user colors
+    //   only allow user input in hex codes when all toggles are off
+    private void HandleSliderChange(Slider activeSlider, string type, float value)
+    {
+        if (value == 1)
+        {
+            protanSlider.value = activeSlider == protanSlider ? 1 : 0;
+            deutanSlider.value = activeSlider == deutanSlider ? 1 : 0;
+            tritanSlider.value = activeSlider == tritanSlider ? 1 : 0;
+            achromatopsiaSlider.value = activeSlider == achromatopsiaSlider ? 1 : 0;
+
+            isFilterActive = true;
+
+            RevertToUserColors();
+            ApplyColorBlindnessFilter(type);
+        }
+        else if (AllSlidersOff())
+        {
+            isFilterActive = false;
+            RevertToUserColors();
+        }
+    }
+
+    private bool AllSlidersOff()
+    {
+        return protanSlider.value == 0 && deutanSlider.value == 0 &&
+               tritanSlider.value == 0 && achromatopsiaSlider.value == 0;
+    }
+
     private void ApplyColorBlindnessFilter(string type)
     {
         for (int i = 0; i < colorPanels.Length; i++)
         {
-            Color adjustedColor = AdjustForColorBlindness(originalColors[i], type);
-            colorPanels[i].color = adjustedColor;
-            hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+            // apply filter toggles to non-empty hex fields
+            if (userColors[i].HasValue)
+            {
+                // use user colors, don't replace with filtered color but display it with hex code
+                Color adjustedColor = AdjustForColorBlindness(userColors[i].Value, type);
+                colorPanels[i].color = adjustedColor;
+                hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+            }
         }
     }
 
-    //Returns colors to their original statee
-    private void RevertToOriginalColors()
+    private void RevertToUserColors()
     {
         for (int i = 0; i < colorPanels.Length; i++)
         {
-            colorPanels[i].color = originalColors[i];
-            hexInputs[i].SetTextWithoutNotify(originalHexCodes[i]);
+            if (userColors[i].HasValue)
+            {
+                // display original color/hex from user
+                colorPanels[i].color = userColors[i].Value;
+                hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(userColors[i].Value));
+            }
+            else
+            {
+                // reset empty fields
+                ResetColorPanel(i);
+            }
         }
     }
 
-    // Adjust a color based on the selected type of color blindness
+    // handling what happens when a slider changes visually - green/red colors and on/off text visibility
+    private void UpdateSliderVisuals(Slider slider, Image background, TMP_Text onText, TMP_Text offText)
+    {
+        if (slider.value == 1)
+        {
+            background.color = Color.green;
+            onText.gameObject.SetActive(true);
+            offText.gameObject.SetActive(false);
+        }
+        else
+        {
+            background.color = Color.red;
+            onText.gameObject.SetActive(false);
+            offText.gameObject.SetActive(true);
+        }
+    }
+
+    // selecting color blindness type
     private Color AdjustForColorBlindness(Color color, string type)
     {
         Vector3 rgb = new Vector3(color.r, color.g, color.b);
@@ -91,13 +209,13 @@ public class ColorBlindnessAdjuster : MonoBehaviour
         switch (type)
         {
             case "Protan":
-                adjustedRgb = ApplyProtan(rgb);
+                adjustedRgb = ApplyBrettel(rgb, Brettel1997.Protan);
                 break;
             case "Deutan":
-                adjustedRgb = ApplyDeutan(rgb);
+                adjustedRgb = ApplyBrettel(rgb, Brettel1997.Deutan);
                 break;
             case "Tritan":
-                adjustedRgb = ApplyTritan(rgb);
+                adjustedRgb = ApplyBrettel(rgb, Brettel1997.Tritan);
                 break;
             case "Achromatopsia":
                 adjustedRgb = ApplyAchromatopsia(rgb);
@@ -107,37 +225,113 @@ public class ColorBlindnessAdjuster : MonoBehaviour
                 break;
         }
 
-        return new Color(adjustedRgb.x, adjustedRgb.y, adjustedRgb.z, color.a);
+        return ClampColor(new Color(adjustedRgb.x, adjustedRgb.y, adjustedRgb.z, color.a));
     }
 
-    // Color blindness adjustment functions
-    private Vector3 ApplyProtan(Vector3 rgb)
+    // apply filter based on selected option (for protan, deutan, and tritan)
+    private Vector3 ApplyBrettel(Vector3 rgb, Brettel1997.Params parameters)
     {
+        float dotProduct = Vector3.Dot(rgb, parameters.SeparationPlane);
+        float[,] matrix = dotProduct >= 0 ? parameters.Matrix1 : parameters.Matrix2;
+
         return new Vector3(
-            0.56667f * rgb.x + 0.43333f * rgb.y,
-            0.55833f * rgb.x + 0.44167f * rgb.z,
-            rgb.z);
+            matrix[0, 0] * rgb.x + matrix[0, 1] * rgb.y + matrix[0, 2] * rgb.z,
+            matrix[1, 0] * rgb.x + matrix[1, 1] * rgb.y + matrix[1, 2] * rgb.z,
+            matrix[2, 0] * rgb.x + matrix[2, 1] * rgb.y + matrix[2, 2] * rgb.z
+        );
     }
 
-    private Vector3 ApplyDeutan(Vector3 rgb)
-    {
-        return new Vector3(
-            0.625f * rgb.x + 0.375f * rgb.y,
-            0.7f * rgb.y + 0.3f * rgb.z,
-            rgb.z);
-    }
-
-    private Vector3 ApplyTritan(Vector3 rgb)
-    {
-        return new Vector3(
-            rgb.x,
-            0.95f * rgb.y + 0.05f * rgb.z,
-            0.8f * rgb.z + 0.2f * rgb.y);
-    }
-
+    // adapted from https://mmuratarat.github.io/2020-05-13/rgb_to_grayscale_formulas
     private Vector3 ApplyAchromatopsia(Vector3 rgb)
     {
         float gray = rgb.x * 0.299f + rgb.y * 0.587f + rgb.z * 0.114f;
         return new Vector3(gray, gray, gray);
     }
+
+    private void UpdateColorPanel(int index, Color newColor)
+    {
+        colorPanels[index].color = newColor;
+        userColors[index] = newColor;
+    }
+
+    private void ResetColorPanel(int index)
+    {
+        colorPanels[index].color = Color.white;
+        userColors[index] = null;
+        hexInputs[index].SetTextWithoutNotify("");
+    }
+
+    // ensuring filter hex code is not invalid/goes past 6 digits
+    private Color ClampColor(Color color)
+    {
+        return new Color(
+            Mathf.Clamp01(color.r),
+            Mathf.Clamp01(color.g),
+            Mathf.Clamp01(color.b),
+            Mathf.Clamp01(color.a)
+        );
+    }
+}
+
+// Brettel 1997 algorithm for color blindness - this is for protan, deutan, and tritan
+// adapted from https://github.com/MaPePeR/jsColorblindSimulator/blob/master/brettel_colorblind_simulation.js
+public static class Brettel1997
+{
+    public struct Params
+    {
+        public float[,] Matrix1;
+        public float[,] Matrix2;
+        public Vector3 SeparationPlane;
+    }
+
+    public static readonly Params Protan = new Params
+    {
+        Matrix1 = new float[,]
+        {
+            { 0.14510f, 1.20165f, -0.34675f },
+            { 0.10447f, 0.85316f, 0.04237f },
+            { 0.00429f, -0.00603f, 1.00174f }
+        },
+        Matrix2 = new float[,]
+        {
+            { 0.14115f, 1.16782f, -0.30897f },
+            { 0.10495f, 0.85730f, 0.03776f },
+            { 0.00431f, -0.00586f, 1.00155f }
+        },
+        SeparationPlane = new Vector3(0.00048f, 0.00416f, -0.00464f)
+    };
+
+    public static readonly Params Deutan = new Params
+    {
+        Matrix1 = new float[,]
+        {
+            { 0.36198f, 0.86755f, -0.22953f },
+            { 0.26099f, 0.64512f, 0.09389f },
+            { -0.01975f, 0.02686f, 0.99289f }
+        },
+        Matrix2 = new float[,]
+        {
+            { 0.37009f, 0.88540f, -0.25549f },
+            { 0.25767f, 0.63782f, 0.10451f },
+            { -0.01950f, 0.02741f, 0.99209f }
+        },
+        SeparationPlane = new Vector3(-0.00293f, -0.00645f, 0.00938f)
+    };
+
+    public static readonly Params Tritan = new Params
+    {
+        Matrix1 = new float[,]
+        {
+            { 1.01354f, 0.14268f, -0.15622f },
+            { -0.01181f, 0.87561f, 0.13619f },
+            { 0.07707f, 0.81208f, 0.11085f }
+        },
+        Matrix2 = new float[,]
+        {
+            { 0.93337f, 0.19999f, -0.13336f },
+            { 0.05809f, 0.82565f, 0.11626f },
+            { -0.37923f, 1.13825f, 0.24098f }
+        },
+        SeparationPlane = new Vector3(0.03960f, -0.02831f, -0.01129f)
+    };
 }
