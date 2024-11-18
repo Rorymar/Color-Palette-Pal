@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Runtime.InteropServices;
+using System.ComponentModel.Design.Serialization;
 
 public class ColorToggle : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class ColorToggle : MonoBehaviour
 
     [SerializeField]
     Slider blueSlider;
+
+    [SerializeField]
+    TMP_Text colorBlindnessType;
 
     [SerializeField]
     ColorConverter cc;
@@ -50,11 +54,8 @@ public class ColorToggle : MonoBehaviour
             int index = i;
             hexInputs[i].onEndEdit.AddListener(delegate { UpdatePanelColor(index); });
         }
-
-        // Keep up with slider changes
-        //redSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
-        //greenSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
-        //blueSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
+        
+        colorBlindnessType.text = "Normal Vision";
     }
 
     // Convert hex to color and update panel color
@@ -68,7 +69,7 @@ public class ColorToggle : MonoBehaviour
         }
 
         string hexCode = hexInputs[index].text;
-        print(hexCode);
+        //print(hexCode);
         if (ColorUtility.TryParseHtmlString(hexCode, out Color color1))
         {
             Color color = cc.createColorFromHex(hexCode);
