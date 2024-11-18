@@ -56,6 +56,11 @@ public class ColorToggle : MonoBehaviour
         }
         
         colorBlindnessType.text = "Normal Vision";
+
+        // Keep up with slider changes
+        //redSlider.onValueChanged.AddListener(delegate { UpdateColors(1); });
+        //greenSlider.onValueChanged.AddListener(delegate { UpdateColors(2); });
+        //blueSlider.onValueChanged.AddListener(delegate { UpdateColors(3); });
     }
 
     // Convert hex to color and update panel color
@@ -112,6 +117,62 @@ public class ColorToggle : MonoBehaviour
 
             // Update hex input field to display the current color
             hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+        }
+    }
+
+    public void zeroSliders(int numSlide)
+    {
+        if (numSlide == 1)
+        { // Changing Red Slider
+            greenSlider.value = 0;
+            blueSlider.value = 0;
+
+            if (redSlider.value == 4)
+            {
+                colorBlindnessType.text = "Protanopia";
+            } else if (redSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Protanomaly";
+            } else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
+        }
+        else if (numSlide == 2)
+        { // Changing Green Slider
+            redSlider.value = 0;
+            blueSlider.value = 0;
+
+            if (greenSlider.value == 4)
+            {
+                colorBlindnessType.text = "Deuteranopia";
+            }
+            else if (greenSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Deuteranomaly";
+            }
+            else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
+        }
+        else
+        { // Changing Blue Slider
+            redSlider.value = 0;
+            greenSlider.value = 0;
+
+            if (blueSlider.value == 4)
+            {
+                colorBlindnessType.text = "Tritanopia";
+            }
+            else if (blueSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Tritanomaly";
+            }
+            else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
         }
     }
 
