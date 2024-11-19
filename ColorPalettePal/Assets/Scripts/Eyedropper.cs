@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityTest2;
 
 public class Eyedropper : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class Eyedropper : MonoBehaviour
         is_enabled = false;
         var button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
+        CustomUtil u = new CustomUtil();
+        u.Add(3, 4);
+        u.PrintHello();
+        print(u.c);
     }
 
     // Update is called once per frame
