@@ -11,7 +11,7 @@ public class ImageProcessor : MonoBehaviour
 {
     public RawImage rawImage; // Assign in the Inspector
     private Texture previousTexture;
-    private List<Color> colorCounts;
+    private List<string> colorCounts;
     public Material[] materials; // Array to hold your materials
     public TMP_InputField[] inputFields;
 
@@ -23,9 +23,9 @@ public class ImageProcessor : MonoBehaviour
     ColorConverter cc;
 
     //Create the variables for the banlists.
-    List<string> blackBanList;
-    List<string> whiteBanList;
-    List<string> grayBanList;
+    private HashSet <string> blackBanList;
+    private HashSet <string> whiteBanList;
+    private HashSet <string> grayBanList;
 
     // Start is called before the first frame update
     void Start()
@@ -42,47 +42,51 @@ public class ImageProcessor : MonoBehaviour
             buttons[i].interactable = false;
         }
 
-        //Create the Black Ban List
-        blackBanList = new List<string>();
-        for(int r = 0; r <= 30; r++){
-            for(int g = 0; g <= 30; g++){
-                for(int b = 0; b <= 30; b++){
+        //Create the Ban Lists
+        blackBanList = new HashSet<string>(MakeBanList(0,60));
+        whiteBanList = new HashSet<string>(MakeBanList(195,255));
+        grayBanList = new HashSet<string>(MakeGrayBanList(50,200));
+
+        //DELETE WHEN CACHE IS SET UP(?)
+        ResetColors();
+    }
+
+    //Create a Non-Gray Ban List
+    private List<string> MakeBanList(int minValue, int maxValue){
+        
+        List<string> banList = new List<string>();
+
+        //Find all values within the range and tolerance and add them to the list.
+        for(int r = minValue; r <= maxValue; r++){
+            for(int g = minValue; g <= maxValue; g++){
+                for(int b = minValue; b <= maxValue; b++){
                     string hexColor = $"#{r:X2}{g:X2}{b:X2}";
-                    blackBanList.Add(hexColor);
+                    banList.Add(hexColor);
                 }
             }
         }
 
-        //Create the White Ban List
-        whiteBanList = new List<string>();
-        for(int r = 225; r <= 255; r++){
-            for(int g = 225; g <= 255; g++){
-                for(int b = 225; b <= 255; b++){
-                    string hexColor = $"#{r:X2}{g:X2}{b:X2}";
-                    whiteBanList.Add(hexColor);
-                }
-            }
-        }
+        return banList;
+    }
 
-        //Create the Gray Ban List
-        grayBanList = new List<string>();
-        int start = 125;
-        int end = 185;
-        for(int r = start; r <= end; r++){
-            for(int g = r-30; g <= r+30; g++){
-                for(int b = r-30; b <= r+30; b++){
-                    if(g >= 0 && g <= 255 && b >= 0 && b <= 255){
-                        if(Mathf.Abs(r-g) <= 30 && Mathf.Abs(g-b) <= 30 && Mathf.Abs(r - b) <= 30){
-                            string hexColor = "#"+r.ToString("X2")+g.ToString("X2")+b.ToString("X2");
-                            grayBanList.Add(hexColor);
-                        }
+    //Create a Gray Ban List
+    private List<string> MakeGrayBanList(int minValue, int maxValue, int tolerance = 15){
+        
+        List<string> banList = new List<string>();
+
+        //Find all values within the range and tolerance and add them to the list.
+        for(int r = minValue; r <= maxValue; r++){
+            for(int g = minValue; g <= maxValue; g++){
+                for(int b = minValue; b <= maxValue; b++){
+                    if(Math.Abs(r-g) <= tolerance && Math.Abs(g-b) <= tolerance && Math.Abs(r-b) <= tolerance){
+                        string hexColor = $"#{r:X2}{g:X2}{b:X2}";
+                        banList.Add(hexColor);
                     }
                 }
             }
         }
 
-        //DELETE WHEN CACHE IS SET UP(?)
-        ResetColors();
+        return banList;
     }
 
     //Triggers when application quits
@@ -135,7 +139,7 @@ public class ImageProcessor : MonoBehaviour
         // Read pixel data from the texture
         Color[] pixels = texture.GetPixels();
         Debug.Log("Pixels Retrieved! Analyzing...");
-        Color[] quantizedPixels = QuantizeImageColors(pixels, numShades: 16);
+        Color[] quantizedPixels = QuantizeImageColors(pixels, numShades: 32);
         //Analyze the colors for commonalities
         colorCounts = AnalyzeColors(quantizedPixels);
         Debug.Log("Generating a starting Palette...");
@@ -145,7 +149,7 @@ public class ImageProcessor : MonoBehaviour
     //Regenerate the Palette, not producing the same colors as before.
     public void RegenColors(){
         Debug.Log("Generating a new Palette...");
-        List<string> banList = new List<string>();
+        HashSet<string> banList = new HashSet<string>();
         for (int i = 0; i < materials.Length; i++)
         {
             banList.Add(cc.createHexFromColor(materials[i].color));
@@ -157,28 +161,32 @@ public class ImageProcessor : MonoBehaviour
 
     //Removes all blacks from palette
     public void RemoveColorGroupBlack(){
-        List<Color> preselects = buildPreselects(blackBanList);
+        Debug.Log("Removing blacks...");
+        List<string> preselects = buildPreselects(blackBanList);
         SelectColors(colorCounts,blackBanList,randomizeTimes: 1, preselects);
     }
 
     //Remove all whites from palette
     public void RemoveColorGroupWhite(){
-        List<Color> preselects = buildPreselects(whiteBanList);
+        Debug.Log("Removing whites...");
+        List<string> preselects = buildPreselects(whiteBanList);
         SelectColors(colorCounts,whiteBanList,randomizeTimes: 1,preselects);
     }
 
     //Remove all grays from palette
     public void RemoveColorGroupGray(){
-        List<Color> preselects = buildPreselects(grayBanList);
+        Debug.Log("Removing greys...");
+        List<string> preselects = buildPreselects(grayBanList);
         SelectColors(colorCounts,grayBanList,randomizeTimes: 1, preselects);
     }
 
     //Builds the list of colors that don't need to be removed from the current line-up.
-    public List<Color> buildPreselects(List<string> banList){
-        List<Color> preselects = new List<Color>();
+    public List<string> buildPreselects(HashSet<string> banList){
+        List<string> preselects = new List<string>();
         foreach(Material material in materials){
-            if(checkViability(cc.createHexFromColor(material.color),banList)){
-                preselects.Add(material.color);
+            string matHex = cc.createHexFromColor(material.color);
+            if(checkViability(matHex,banList) && material.color != Color.clear){
+                preselects.Add(matHex);
             }
         }
         return preselects;
@@ -213,9 +221,9 @@ public class ImageProcessor : MonoBehaviour
     }
 
     //Analyze the color information in the image uploaded by the user.
-    private List<Color> AnalyzeColors(Color[] pixels){
+    private List<string> AnalyzeColors(Color[] pixels){
                 //Create a way of storing the color data
-        Dictionary<Color, int> colorCounts = new Dictionary<Color, int>();
+        Dictionary<string, int> colorCounts = new Dictionary<string, int>();
 
         //For each pixel, we analyze its color
         foreach (var pixel in pixels)
@@ -227,14 +235,16 @@ public class ImageProcessor : MonoBehaviour
             Mathf.Round(pixel.b * 255) / 255
             );
 
+            string simplifiedHex = cc.createHexFromColor(simplifiedPixel);
+
             //Increment counts
-            if (colorCounts.ContainsKey(simplifiedPixel))
+            if (colorCounts.ContainsKey(simplifiedHex))
             {
-                colorCounts[simplifiedPixel]++;
+                colorCounts[simplifiedHex]++;
             }
             else
             {
-                colorCounts[simplifiedPixel] = 1;
+                colorCounts[simplifiedHex] = 1;
             }
         }
 
@@ -245,12 +255,12 @@ public class ImageProcessor : MonoBehaviour
     }
 
     //Selects the colors for the palette
-    private void SelectColors(List<Color> sortedColors, List<string> banList = null, int randomizeTimes = 0, List<Color> preselects = null){
+    private void SelectColors(List<string> sortedColors, HashSet<string> banList = null, int randomizeTimes = 0, List<string> preselects = null){
         
         //Starting threshold and empty list
-        float threshold = 0.3f;
+        float threshold = 0.2f;
         int colorsToGrab = 6;
-        List<Color> selectedColors = new List<Color>();
+        List<string> selectedColors = new List<string>();
 
         //Random the color list.
         for(int i = 0; i < randomizeTimes; i++){
@@ -262,22 +272,26 @@ public class ImageProcessor : MonoBehaviour
 
             //Clear the list
             selectedColors.Clear();
+            Debug.Log("Reset selected colors");
             if(preselects != null){
                 selectedColors.AddRange(preselects);
             }
 
             //Loop through the colors till you have six or run out
             foreach (var color in sortedColors){
-                if(banList != null && !checkViability(cc.createHexFromColor(color),banList)){
+                if(selectedColors.Contains(color)){
+                    continue;
+                }
+                else if(banList != null && !checkViability(color,banList)){
                     continue;
                 }
                 if(selectedColors.Count < colorsToGrab)
                 {
                     //Only add if sufficiently different from the previous color.
-                    if(selectedColors.All(c => ColorDifference(c,color) > threshold) )
+                    if(selectedColors.All(c => ColorDifference(cc.createColorFromHex(c),cc.createColorFromHex(color)) > threshold) )
                     {
                         selectedColors.Add(color);
-                        materials[selectedColors.Count-1].color = color;
+                        Debug.Log($"Added Color: {color} to SelectedColors.");
                     }
                 }
                 else
@@ -292,22 +306,17 @@ public class ImageProcessor : MonoBehaviour
     }
 
     //Verifies if the current color is in the banned list of colors
-    private bool checkViability(string hexCode, List<string> BanList){
-        foreach(string otherHex in BanList){
-            if(hexCode.Equals(otherHex,StringComparison.OrdinalIgnoreCase)){
-                return false;
-            }
-        }
-        return true;
+    private bool checkViability(string hexCode, HashSet<string> BanList){
+        return !BanList.Contains(hexCode);
     }
 
     //Calculate the degree of similarity between two colors.
     private float ColorDifference(Color a, Color b){
-        return Mathf.Sqrt(Mathf.Pow(a.r - b.r, 2) + Mathf.Pow(a.g-b.g,2)+Mathf.Pow(a.b-b.b,2));
+        return Mathf.Pow(a.r - b.r, 2) + Mathf.Pow(a.g - b.g, 2) + Mathf.Pow(a.b - b.b, 2);
     }
 
     //Randomizes the list of sorted colors to induce a degree of variance in results
-    private List<Color> SlightlyRandomizeList(List<Color> sortedColors, double randomnessFactor = 0.5)
+    private List<string> SlightlyRandomizeList(List<string> sortedColors, double randomnessFactor = 0.5)
     {
         //Creates a new random object
         var random = new System.Random();
@@ -328,53 +337,50 @@ public class ImageProcessor : MonoBehaviour
     }
 
     //Display the palette of colors. If there aren't six to display, make the material clear.
-    private void DisplayColors(List<Color> selectedColors){
-        //Assign the six colors
-        Color blank = new Color();
-        blank = Color.clear;
-
+    private void DisplayColors(List<string> selectedColors){
         //For the removals, order of extisting colors should be maintained
-        List<Color> reorderedColors = new List<Color>();
+        List<string> reorderedColors = new List<string>(new string[materials.Length]);
         List<bool> used = new List<bool>(new bool[selectedColors.Count]);
 
         for(int i = 0; i < materials.Length; i++){
             bool matchFound = false;
             for(int j = 0; j < selectedColors.Count; j++){
-                if(!used[j] && materials[i].color == selectedColors[j]){
-                    reorderedColors.Add(selectedColors[j]);
+                if(!used[j] && materials[i].color == cc.createColorFromHex(selectedColors[j])){
+                    reorderedColors[i] = selectedColors[j];
                     used[j] = true;
                     matchFound = true;
                     break;
                 }
             }
             if(!matchFound){
-                reorderedColors.Add(blank);
-            }
-        }
-        for(int i = 0; i < selectedColors.Count; i++){
-            if(!used[i]){
-                for(int j = 0; j < reorderedColors.Count; j++){
-                    if(reorderedColors[j] == blank){
-                        reorderedColors[j] = selectedColors[i];
-                    }
-                }
+                reorderedColors[i] = null;
             }
         }
 
-        selectedColors = reorderedColors;
+        int colorIndex = 0;
+        for(int i = 0; i < reorderedColors.Count; i++){
+            if(reorderedColors[i] == null){
+                while(colorIndex < selectedColors.Count && used[colorIndex]){
+                    colorIndex++;
+                }
+                if(colorIndex < selectedColors.Count){
+                    reorderedColors[i] = selectedColors[colorIndex];
+                    used[colorIndex] = true;
+                }
+            }
+        }
 
         //Sets the colors
-        for (int i = 0; i < materials.Length; i++)
-        {
-            if (i < selectedColors.Count)
-            {
-                materials[i].color = selectedColors[i];
-                inputFields[i].SetTextWithoutNotify("Hex Code");
-                if(materials[i].color != Color.clear){
-                    inputFields[i].SetTextWithoutNotify(cc.createHexFromColor(materials[i].color));
-                }
-                //Debug.Log($"Assigned Color: {selectedColors[i]} to Material: {materials[i].name}");
+        for (int i = 0; i < materials.Length; i++){
+            inputFields[i].SetTextWithoutNotify("Hex Code");
+            if (i < reorderedColors.Count  && reorderedColors[i] != null){
+                materials[i].color = cc.createColorFromHex(reorderedColors[i]);
+                inputFields[i].SetTextWithoutNotify(reorderedColors[i]);
             }
+            else{
+                materials[i].color = Color.clear;
+            }
+            Debug.Log($"Assigned Color: {reorderedColors[i]} to Material: {materials[i].name}");
         }
     }
 
