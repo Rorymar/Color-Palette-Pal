@@ -2,15 +2,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.InteropServices;
+using System.ComponentModel.Design.Serialization;
 
-public class ColorBlindnessToggle : MonoBehaviour
+public class ColorToggle : MonoBehaviour
 {
-    // Public references for the UI components
-    public TMP_InputField[] hexInputs;
-    public Image[] colorPanels;
-    public Slider redSlider;
-    public Slider greenSlider;
-    public Slider blueSlider;
+    // Serialized Fields for the UI components
+    [SerializeField]
+    TMP_InputField[] hexInputs;
+
+    [SerializeField]
+    Material[] colorPanels;
+
+    [SerializeField]
+    Slider redSlider;
+
+    [SerializeField]
+    Slider greenSlider;
+
+    [SerializeField]
+    Slider blueSlider;
+
+    [SerializeField]
+    Slider monoSlider;
+
+    [SerializeField]
+    TMP_Text colorBlindnessType;
 
     [SerializeField]
     ColorConverter cc;
@@ -40,15 +57,17 @@ public class ColorBlindnessToggle : MonoBehaviour
             int index = i;
             hexInputs[i].onEndEdit.AddListener(delegate { UpdatePanelColor(index); });
         }
+        
+        colorBlindnessType.text = "Normal Vision";
 
         // Keep up with slider changes
-        redSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
-        greenSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
-        blueSlider.onValueChanged.AddListener(delegate { UpdateColors(); });
+        //redSlider.onValueChanged.AddListener(delegate { UpdateColors(1); });
+        //greenSlider.onValueChanged.AddListener(delegate { UpdateColors(2); });
+        //blueSlider.onValueChanged.AddListener(delegate { UpdateColors(3); });
     }
 
     // Convert hex to color and update panel color
-    private void UpdatePanelColor(int index)
+    public void UpdatePanelColor(int index)
     {
         // Bounds check to prevent out-of-range errors
         if (index < 0 || index >= hexInputs.Length || index >= colorPanels.Length)
@@ -58,8 +77,10 @@ public class ColorBlindnessToggle : MonoBehaviour
         }
 
         string hexCode = hexInputs[index].text;
-        if (ColorUtility.TryParseHtmlString(hexCode, out Color color))
+        //print(hexCode);
+        if (ColorUtility.TryParseHtmlString(hexCode, out Color color1))
         {
+            Color color = cc.createColorFromHex(hexCode);
             // Store original color, update panel, apply color blindness adjustments
             originalColors[index] = color;
             colorPanels[index].color = color;
@@ -72,12 +93,13 @@ public class ColorBlindnessToggle : MonoBehaviour
     }
 
     // Adjust colors based on slider values
-    private void UpdateColors()
+    public void UpdateColors()
     {
         // Convert sliders to factor
         float redFactor = GetFactorFromSliderValue((int)redSlider.value);
         float greenFactor = GetFactorFromSliderValue((int)greenSlider.value);
         float blueFactor = GetFactorFromSliderValue((int)blueSlider.value);
+        float monoFactor = GetFactorFromSliderValue((int)monoSlider.value);
 
         for (int i = 0; i < colorPanels.Length; i++)
         {
@@ -88,10 +110,21 @@ public class ColorBlindnessToggle : MonoBehaviour
             // Start with original color
             Color color = originalColors[i];
 
-            // Apply partial color blindness
-            float adjustedRed = color.r * redFactor + (1 - redFactor) * GetGrayScale(color);
-            float adjustedGreen = color.g * greenFactor + (1 - greenFactor) * GetGrayScale(color);
-            float adjustedBlue = color.b * blueFactor + (1 - blueFactor) * GetGrayScale(color);
+            float adjustedRed;
+            float adjustedGreen;
+            float adjustedBlue;
+            if (monoFactor == 1f)
+            {
+                // Apply partial color blindness
+                adjustedRed = color.r * redFactor + (1 - redFactor) * GetGrayScale(color);
+                adjustedGreen = color.g * greenFactor + (1 - greenFactor) * GetGrayScale(color);
+                adjustedBlue = color.b * blueFactor + (1 - blueFactor) * GetGrayScale(color);
+            } else {
+                // Apply total color blindness
+                adjustedRed = color.r * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedGreen = color.g * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedBlue = color.b * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+            }
 
             // Update color panel with adjusted color
             Color adjustedColor = new Color(adjustedRed, adjustedGreen, adjustedBlue, color.a);
@@ -99,6 +132,84 @@ public class ColorBlindnessToggle : MonoBehaviour
 
             // Update hex input field to display the current color
             hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+        }
+    }
+
+    public void zeroSliders(int numSlide)
+    {
+        if (numSlide == 1)
+        { // Changing Red Slider
+            greenSlider.value = 0;
+            blueSlider.value = 0;
+            monoSlider.value = 0;
+
+            if (redSlider.value == 4)
+            {
+                colorBlindnessType.text = "Protanopia";
+            } else if (redSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Protanomaly";
+            } else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
+        }
+        else if (numSlide == 2)
+        { // Changing Green Slider
+            redSlider.value = 0;
+            blueSlider.value = 0;
+            monoSlider.value = 0;
+
+            if (greenSlider.value == 4)
+            {
+                colorBlindnessType.text = "Deuteranopia";
+            }
+            else if (greenSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Deuteranomaly";
+            }
+            else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
+        }
+        else if (numSlide == 3)
+        { // Changing Blue Slider
+            redSlider.value = 0;
+            greenSlider.value = 0;
+            monoSlider.value = 0;
+
+            if (blueSlider.value == 4)
+            {
+                colorBlindnessType.text = "Tritanopia";
+            }
+            else if (blueSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Tritanomaly";
+            }
+            else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
+        }
+        else
+        { // Changing Monochrome Slider
+            redSlider.value = 0;
+            greenSlider.value = 0;
+            blueSlider.value = 0;
+
+            if (monoSlider.value == 4)
+            {
+                colorBlindnessType.text = "Achromatopsia";
+            }
+            else if (monoSlider.value >= 2)
+            {
+                colorBlindnessType.text = "Achromatomaly";
+            }
+            else
+            {
+                colorBlindnessType.text = "Normal Vision";
+            }
         }
     }
 
