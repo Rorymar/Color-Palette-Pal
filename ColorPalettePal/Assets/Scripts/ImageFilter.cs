@@ -21,6 +21,10 @@ public class ImageFilter : MonoBehaviour
 
     private ColorBlindType currentType = ColorBlindType.None; // Default type
 
+    [SerializeField]
+    GameObject[] buttonObjects;
+    private Button[] buttons;
+
     void Start()
     {
         // Check if rawImage is assigned; if not, try to find it on the GameObject
@@ -32,6 +36,12 @@ public class ImageFilter : MonoBehaviour
                 Debug.LogError("RawImage component is not assigned and cannot be found on the GameObject.");
                 return;
             }
+        }
+        
+        buttons = new Button[buttonObjects.Length];
+        for(int i = 0; i < buttonObjects.Length; i++){
+            buttons[i] = buttonObjects[i].GetComponent<Button>();
+            buttons[i].interactable = false;
         }
 
         // Check if filteredImageDisplay is assigned
@@ -57,6 +67,9 @@ public class ImageFilter : MonoBehaviour
             if(previousTexture != rawImage.texture){
                 previousTexture = rawImage.texture as Texture2D;
                 filteredImageDisplay.texture = rawImage.texture;
+                for(int i = 0; i < buttonObjects.Length; i++){
+                    buttons[i].interactable = true;
+                }
             }
             if(filteredImageDisplay.texture == null){
                 filteredImageDisplay.texture = rawImage.texture;
