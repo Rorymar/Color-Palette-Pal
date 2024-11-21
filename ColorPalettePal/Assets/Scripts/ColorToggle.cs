@@ -9,10 +9,10 @@ public class ColorToggle : MonoBehaviour
 {
     // Serialized Fields for the UI components
     [SerializeField]
-    TMP_InputField[] hexInputs;
+    TMP_InputField[] hexInputs; //Fields the user inputs hex codes into
 
     [SerializeField]
-    Material[] colorPanels;
+    Material[] colorPanels; //The color display rectangles
 
     [SerializeField]
     Slider redSlider;
@@ -27,7 +27,7 @@ public class ColorToggle : MonoBehaviour
     Slider monoSlider;
 
     [SerializeField]
-    TMP_Text colorBlindnessType;
+    TMP_Text colorBlindnessType; //textbox to display type of color blindness being simulated
 
     [SerializeField]
     ColorConverter cc;
@@ -46,7 +46,7 @@ public class ColorToggle : MonoBehaviour
         // Set default color for each panel and hex input
         for (int i = 0; i < hexInputs.Length; i++)
         {
-            // Ensure we don’t exceed the defaultHexColors array length
+            // Ensure we donï¿½t exceed the defaultHexColors array length
             if (i < defaultHexColors.Length)
             {
                 // Set default hex input, apply color to panel
@@ -59,11 +59,6 @@ public class ColorToggle : MonoBehaviour
         }
         
         colorBlindnessType.text = "Normal Vision";
-
-        // Keep up with slider changes
-        //redSlider.onValueChanged.AddListener(delegate { UpdateColors(1); });
-        //greenSlider.onValueChanged.AddListener(delegate { UpdateColors(2); });
-        //blueSlider.onValueChanged.AddListener(delegate { UpdateColors(3); });
     }
 
     // Convert hex to color and update panel color
@@ -131,10 +126,11 @@ public class ColorToggle : MonoBehaviour
             colorPanels[i].color = adjustedColor;
 
             // Update hex input field to display the current color
-            hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+            //hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
         }
     }
 
+    //on slider change, sets all other sliders to 0 and adjusts the text in the color blindness textbox
     public void zeroSliders(int numSlide)
     {
         if (numSlide == 1)
