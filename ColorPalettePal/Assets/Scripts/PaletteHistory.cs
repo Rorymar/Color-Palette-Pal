@@ -15,6 +15,12 @@ public class PaletteHistory : MonoBehaviour
     [SerializeField]
     List<TMP_InputField> hexSources;
 
+    [SerializeField]
+    GameObject paletteScreen;
+
+    [SerializeField]
+    GameObject historyScreen;
+
     private List<List<string>> history;
     
     // Start is called before the first frame update
@@ -45,6 +51,11 @@ public class PaletteHistory : MonoBehaviour
         history[0] = newPal;
         displayHistory();
         return;
+    }
+
+    public void switchDisplays() {
+        paletteScreen.SetActive(!paletteScreen.activeSelf);
+        historyScreen.SetActive(!historyScreen.activeSelf);
     }
 
     //display the hex codes stored in history
