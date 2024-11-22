@@ -37,6 +37,9 @@ public class ApplyColor : MonoBehaviour
     [SerializeField]
     ColorConverter cc;
 
+    [SerializeField]
+    PaletteHistory hh;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +72,7 @@ public class ApplyColor : MonoBehaviour
             {
                 channelMats[i].color = color_picker.color;
                 input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
-
+                hh.newEntry();
             }
         }
 
@@ -139,13 +142,15 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[0].color = cc.createColorFromHex(changed);   
+            hh.newEntry();
         }
     }
     public void changeCol2Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[1].color = cc.createColorFromHex(changed);   
+            channelMats[1].color = cc.createColorFromHex(changed);  
+            hh.newEntry(); 
         }
     }
     public void changeCol3Hex(string changed)
@@ -153,6 +158,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[2].color = cc.createColorFromHex(changed);   
+            hh.newEntry();
         }
     }
     public void changeCol4Hex(string changed)
@@ -160,13 +166,15 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[3].color = cc.createColorFromHex(changed);   
+            hh.newEntry();
         }
     }
     public void changeCol5Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[4].color = cc.createColorFromHex(changed);   
+            channelMats[4].color = cc.createColorFromHex(changed); 
+            hh.newEntry();  
         }
     }
     public void changeCol6Hex(string changed)
@@ -174,6 +182,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[5].color = cc.createColorFromHex(changed);   
+            hh.newEntry();
         }
     }
 
