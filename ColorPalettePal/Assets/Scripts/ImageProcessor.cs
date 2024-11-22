@@ -22,6 +22,9 @@ public class ImageProcessor : MonoBehaviour
     [SerializeField]
     ColorConverter cc;
 
+    [SerializeField]
+    PaletteHistory hh;
+
     //Create the variables for the banlists.
     private HashSet <string> blackBanList;
     private HashSet <string> whiteBanList;
@@ -150,9 +153,11 @@ public class ImageProcessor : MonoBehaviour
     public void RegenColors(){
         Debug.Log("Generating a new Palette...");
         HashSet<string> banList = new HashSet<string>();
-        for (int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < inputFields.Length; i++)
         {
-            banList.Add(cc.createHexFromColor(materials[i].color));
+            if(inputFields[i].text != "Hex Code"){
+                banList.Add(inputFields[i].text);
+            }
         }
         if(colorCounts != null){
             SelectColors(colorCounts,banList,randomizeTimes: 1);
@@ -382,6 +387,7 @@ public class ImageProcessor : MonoBehaviour
             }
             Debug.Log($"Assigned Color: {reorderedColors[i]} to Material: {materials[i].name}");
         }
+        hh.newEntry();
     }
 
 }
