@@ -16,7 +16,7 @@ PlayerSettings:
   productName: ColorPalettePal
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.06314526, g: 0.12250639, b: 0.31132078, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.08627451, g: 0.20784314, b: 0.3372549, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
