@@ -40,6 +40,7 @@ public class ColorBlindnessAdjuster : MonoBehaviour
             // start with empty fields and white panels
             hexInputs[i].text = "#FFFFFF";
             colorPanels[i].color = Color.white;
+            colorPanels[i].material.color = Color.white;
         }
 
         // initialize slider visuals
