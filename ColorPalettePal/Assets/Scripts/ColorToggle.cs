@@ -61,6 +61,14 @@ public class ColorToggle : MonoBehaviour
         colorBlindnessType.text = "Normal Vision";
     }
 
+    void OnApplicationQuit()
+    {
+        for(int i = 0; i < 6; i++){
+            hexInputs[i].text = defaultHexColors[i];
+            colorPanels[i].color = cc.createColorFromHex(defaultHexColors[i]);
+        }
+    }
+
     // Convert hex to color and update panel color
     public void UpdatePanelColor(int index)
     {

@@ -79,6 +79,14 @@ public class ApplyColor : MonoBehaviour
         previousColor = color_picker.color;
     }
 
+    //Triggers when application quits
+    void OnApplicationQuit()
+    {
+        for(int i = 0; i < 6; i++) {
+            channelMats[i].color = cc.createColorFromHex("#E6B1B1");
+        }
+    }
+
     //Functions to monitor whether a color is toggled or not
     public void onlyEdit(int chNum)
     {
