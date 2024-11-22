@@ -9,10 +9,10 @@ public class ColorToggle : MonoBehaviour
 {
     // Serialized Fields for the UI components
     [SerializeField]
-    TMP_InputField[] hexInputs;
+    TMP_InputField[] hexInputs; //Fields the user inputs hex codes into
 
     [SerializeField]
-    Material[] colorPanels;
+    Material[] colorPanels; //The color display rectangles
 
     [SerializeField]
     Slider redSlider;
@@ -27,7 +27,7 @@ public class ColorToggle : MonoBehaviour
     Slider monoSlider;
 
     [SerializeField]
-    TMP_Text colorBlindnessType;
+    TMP_Text colorBlindnessType; //textbox to display type of color blindness being simulated
 
     [SerializeField]
     ColorConverter cc;
@@ -46,7 +46,7 @@ public class ColorToggle : MonoBehaviour
         // Set default color for each panel and hex input
         for (int i = 0; i < hexInputs.Length; i++)
         {
-            // Ensure we don’t exceed the defaultHexColors array length
+            // Ensure we don't exceed the defaultHexColors array length
             if (i < defaultHexColors.Length)
             {
                 // Set default hex input, apply color to panel
@@ -59,11 +59,6 @@ public class ColorToggle : MonoBehaviour
         }
         
         colorBlindnessType.text = "Normal Vision";
-
-        // Keep up with slider changes
-        //redSlider.onValueChanged.AddListener(delegate { UpdateColors(1); });
-        //greenSlider.onValueChanged.AddListener(delegate { UpdateColors(2); });
-        //blueSlider.onValueChanged.AddListener(delegate { UpdateColors(3); });
     }
 
     // Convert hex to color and update panel color
@@ -109,32 +104,42 @@ public class ColorToggle : MonoBehaviour
 
             // Start with original color
             Color color = originalColors[i];
+            Vector3 rgb = new Vector3(color.r, color.g, color.b);
 
-            float adjustedRed;
-            float adjustedGreen;
-            float adjustedBlue;
-            if (monoFactor == 1f)
+            Vector3 adjustedrgb;
+            if (redFactor != 1f)
             {
-                // Apply partial color blindness
-                adjustedRed = color.r * redFactor + (1 - redFactor) * GetGrayScale(color);
-                adjustedGreen = color.g * greenFactor + (1 - greenFactor) * GetGrayScale(color);
-                adjustedBlue = color.b * blueFactor + (1 - blueFactor) * GetGrayScale(color);
+                // Apply protan color blindness
+                adjustedrgb = ApplyBrettel(rgb, Brettel1997.Protan);
+                adjustedrgb.x += color.r * redFactor;
+            } else if (greenFactor != 1f) {
+                // Apply deuteran color blindness
+                adjustedrgb = ApplyBrettel(rgb, Brettel1997.Deutan);
+                adjustedrgb.y += color.g * greenFactor;
+            } else if (blueFactor != 1f) {
+                // Apply tritan color blindness
+                adjustedrgb = ApplyBrettel(rgb, Brettel1997.Tritan);
+                adjustedrgb.z += color.b * blueFactor;
+            } else if (redFactor == 1f && greenFactor == 1f && blueFactor == 1f && monoFactor == 1f) {
+                // Normal Vision
+                adjustedrgb = rgb;
             } else {
                 // Apply total color blindness
-                adjustedRed = color.r * monoFactor + (1 - monoFactor) * GetGrayScale(color);
-                adjustedGreen = color.g * monoFactor + (1 - monoFactor) * GetGrayScale(color);
-                adjustedBlue = color.b * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedrgb.x = color.r * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedrgb.y = color.g * monoFactor + (1 - monoFactor) * GetGrayScale(color);
+                adjustedrgb.z = color.b * monoFactor + (1 - monoFactor) * GetGrayScale(color);
             }
 
             // Update color panel with adjusted color
-            Color adjustedColor = new Color(adjustedRed, adjustedGreen, adjustedBlue, color.a);
+            Color adjustedColor = new Color(adjustedrgb.x, adjustedrgb.y, adjustedrgb.z);
             colorPanels[i].color = adjustedColor;
 
             // Update hex input field to display the current color
-            hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+            //hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
         }
     }
 
+    //on slider change, sets all other sliders to 0 and adjusts the text in the color blindness textbox
     public void zeroSliders(int numSlide)
     {
         if (numSlide == 1)
@@ -232,5 +237,18 @@ public class ColorToggle : MonoBehaviour
             case 4: return 0.0f;  // 100% blindness, complete gray
             default: return 1.0f; // Fallback to full color
         }
+    }
+
+    // apply filter based on selected option (for protan, deutan, and tritan)
+    private Vector3 ApplyBrettel(Vector3 rgb, Brettel1997.Params parameters)
+    {
+        float dotProduct = Vector3.Dot(rgb, parameters.SeparationPlane);
+        float[,] matrix = dotProduct >= 0 ? parameters.Matrix1 : parameters.Matrix2;
+
+        return new Vector3(
+            matrix[0, 0] * rgb.x + matrix[0, 1] * rgb.y + matrix[0, 2] * rgb.z,
+            matrix[1, 0] * rgb.x + matrix[1, 1] * rgb.y + matrix[1, 2] * rgb.z,
+            matrix[2, 0] * rgb.x + matrix[2, 1] * rgb.y + matrix[2, 2] * rgb.z
+        );
     }
 }
