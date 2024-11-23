@@ -17,11 +17,23 @@ public class ApplyColor : MonoBehaviour
     [SerializeField]
     List<Material> channelMats;
 
-    public FlexibleColorPicker color_picker;
+    [SerializeField]
+    FlexibleColorPicker color_picker;
 
     //List of Color Channel input fields
     [SerializeField]
     List<TMP_InputField> input_fields;
+
+    //List of color panel selection checkboxes
+    [SerializeField]
+    List<GameObject> checkBoxes;
+
+    //A class that converts hex codes to colors and vice versa
+    [SerializeField]
+    ColorConverter cc;
+
+    [SerializeField]
+    PaletteHistory hh;
 
     //Private Variables for changing the colors via color picker
     private List<bool> can_change;
@@ -31,18 +43,10 @@ public class ApplyColor : MonoBehaviour
     //Private variables for locking / unlocking the colors
     private List<bool> locked;
 
-    [SerializeField]
-    List<GameObject> checkBoxes;
-
-    [SerializeField]
-    ColorConverter cc;
-
-    [SerializeField]
-    PaletteHistory hh;
-
     // Start is called before the first frame update
     void Start()
     {
+        //Make all colors uneditable and unlocked to start out
         can_change = new List<bool>();
         locked = new List<bool>();
         for (int i = 0; i < 6; i++)
@@ -72,7 +76,7 @@ public class ApplyColor : MonoBehaviour
             {
                 channelMats[i].color = color_picker.color;
                 input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
-                hh.newEntry();
+                //hh.newEntry();
             }
         }
 
@@ -87,7 +91,7 @@ public class ApplyColor : MonoBehaviour
         }
     }
 
-    //Functions to monitor whether a color is toggled or not
+    //Functions to monitor whether a color is editable or not
     public void onlyEdit(int chNum)
     {
         if(checkBoxes[chNum].GetComponent<UnityEngine.UI.Toggle>().isOn)
@@ -103,10 +107,10 @@ public class ApplyColor : MonoBehaviour
                 }
             }
         }
-        //print(chNum);
         return;
     }
 
+    //mark a color panel as editable when its check box is marked
     public void toggleColor(int n)
     {
         can_change[n] = !can_change[n];
@@ -126,6 +130,7 @@ public class ApplyColor : MonoBehaviour
         }
     }
 
+    //Change all of the lock images to unlocked images, and set all colors as able to be randomized
     public void setLocksImageToUnlocked()
     {
         //print("In image, col1: " + col1_locked);
@@ -144,13 +149,13 @@ public class ApplyColor : MonoBehaviour
             ().isOn = false;
     }
 
-//Functions to change colors based on hex input
+    //Functions to change colors based on hex input
     public void changeCol1Hex(string changed)
     {
         if (changed.Length == 7)
         {
             channelMats[0].color = cc.createColorFromHex(changed);   
-            hh.newEntry();
+            //hh.newEntry();
         }
     }
     public void changeCol2Hex(string changed)
@@ -158,7 +163,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[1].color = cc.createColorFromHex(changed);  
-            hh.newEntry(); 
+            //hh.newEntry(); 
         }
     }
     public void changeCol3Hex(string changed)
@@ -166,7 +171,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[2].color = cc.createColorFromHex(changed);   
-            hh.newEntry();
+            //hh.newEntry();
         }
     }
     public void changeCol4Hex(string changed)
@@ -174,7 +179,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[3].color = cc.createColorFromHex(changed);   
-            hh.newEntry();
+            //hh.newEntry();
         }
     }
     public void changeCol5Hex(string changed)
@@ -182,7 +187,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[4].color = cc.createColorFromHex(changed); 
-            hh.newEntry();  
+            //hh.newEntry();  
         }
     }
     public void changeCol6Hex(string changed)
@@ -190,7 +195,7 @@ public class ApplyColor : MonoBehaviour
         if (changed.Length == 7)
         {
             channelMats[5].color = cc.createColorFromHex(changed);   
-            hh.newEntry();
+            //hh.newEntry();
         }
     }
 

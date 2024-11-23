@@ -142,7 +142,7 @@ public class ColorToggle : MonoBehaviour
             Color adjustedColor = new Color(adjustedrgb.x, adjustedrgb.y, adjustedrgb.z);
             colorPanels[i].color = adjustedColor;
 
-            // Update hex input field to display the current color
+            // Update hex input field to display the current color (debug purposes)
             //hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
         }
     }

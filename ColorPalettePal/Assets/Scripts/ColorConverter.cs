@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ColorConverter : MonoBehaviour
 {
+    //convert a string hex code into a Color
     public Color createColorFromHex(string hex)
     {
         var red = int.Parse(hex.Substring(1, 2), NumberStyles.HexNumber) / 255f;
@@ -13,6 +14,7 @@ public class ColorConverter : MonoBehaviour
         return new Color(red, green, blue);
     }
 
+    //convert a Color into a string hex code
     public string createHexFromColor(Color color)
     {
         int red = (int)(color.r * 255);

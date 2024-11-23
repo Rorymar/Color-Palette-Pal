@@ -9,14 +9,21 @@ using UnityEngine.UI;
 
 public class ImageProcessor : MonoBehaviour
 {
-    public RawImage rawImage; // Assign in the Inspector
+    [SerializeField]
+    RawImage rawImage; // Assign in the Inspector
+    
     private Texture previousTexture;
     private List<string> colorCounts;
-    public Material[] materials; // Array to hold your materials
-    public TMP_InputField[] inputFields;
+    
+    [SerializeField]
+    Material[] materials; // Array to hold your materials
+    
+    [SerializeField]
+    TMP_InputField[] inputFields;
 
     [SerializeField]
     GameObject[] buttonObjects;
+    
     private Button[] buttons;
 
     [SerializeField]

@@ -8,7 +8,8 @@ public class ImageHexSwap : MonoBehaviour
 {
     private Material panelMaterial;
 
-    public ColorConverter cc;
+    [SerializeField]
+    ColorConverter cc;
 
     //A variable for the proper format of a hex code.
     private string hexFormat = @"^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?$";

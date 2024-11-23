@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class ImageFilter : MonoBehaviour
 {
-    public RawImage rawImage; // Original image input
-    public RawImage filteredImageDisplay; // Display for the processed image
+    [SerializeField]
+    RawImage rawImage; // Original image input
+
+    [SerializeField]
+    RawImage filteredImageDisplay; // Display for the processed image
+
     private Texture2D previousTexture;
 
     // Enum for color blindness types
@@ -23,6 +27,7 @@ public class ImageFilter : MonoBehaviour
 
     [SerializeField]
     GameObject[] buttonObjects;
+    
     private Button[] buttons;
 
     void Start()

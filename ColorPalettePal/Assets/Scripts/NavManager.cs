@@ -10,9 +10,14 @@ public class NavManager : MonoBehaviour
     public static string NavState = "Base";
 
     //Navigational Groups
-    public GameObject BaseNav;   // Navigation for the BaseNav Group
-    public GameObject CFNav;  // Navigation for the CFNav Group
-    public GameObject CANav;  // Navigation for the CANav Group
+    [SerializeField]
+    GameObject BaseNav;   // Navigation for the BaseNav Group
+    
+    [SerializeField]
+    GameObject CFNav;  // Navigation for the CFNav Group
+    
+    [SerializeField]
+    GameObject CANav;  // Navigation for the CANav Group
 
     // Start is called before the first frame update
     void Start()
