@@ -30,6 +30,8 @@ public class ImageFilter : MonoBehaviour
     
     private Button[] buttons;
 
+    private bool textureSet = false;
+
     void Start()
     {
         // Check if rawImage is assigned; if not, try to find it on the GameObject
@@ -72,8 +74,11 @@ public class ImageFilter : MonoBehaviour
             if(previousTexture != rawImage.texture){
                 previousTexture = rawImage.texture as Texture2D;
                 filteredImageDisplay.texture = rawImage.texture;
-                for(int i = 0; i < buttonObjects.Length; i++){
-                    buttons[i].interactable = true;
+                if(textureSet == false){
+                    for(int i = 1; i < buttonObjects.Length; i++){
+                        buttons[i].interactable = true;
+                    }
+                    textureSet = true;
                 }
             }
             if(filteredImageDisplay.texture == null){
@@ -163,6 +168,10 @@ public class ImageFilter : MonoBehaviour
     public void resetImage(){
         filteredImageDisplay.texture = previousTexture;
         currentType = ColorBlindType.None;
+        buttons[0].interactable = false;
+        for(int i = 1; i < buttons.Length; i++){
+            buttons[i].interactable = true;
+        }
         Debug.Log($"Reset image display.");
     }
 
@@ -176,9 +185,35 @@ public class ImageFilter : MonoBehaviour
             "Tritanopia" => ColorBlindType.Tritanopia,
             "Achromatopsia" => ColorBlindType.Achromatopsia
         };
+
+        int buttonIndex = 0;
+        if(type == "Protanopia"){
+            buttonIndex = 3;
+        }
+        else if(type == "Deuteranopia"){
+            buttonIndex = 2;
+        }
+        else if(type == "Tritanopia"){
+            buttonIndex = 4;
+        }
+        else if(type == "Achromatopsia"){
+            buttonIndex = 1;
+        }
+
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = false;
+        }
+
         if (rawImage != null && rawImage.texture != null)
         {
             ProcessTexture(previousTexture); // Re-process the image with the new type
         }
+
+        for(int i = 0; i < buttons.Length; i++){
+            if(i != buttonIndex){
+                buttons[i].interactable = true;
+            }
+        }
+        
     }
 }
