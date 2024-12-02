@@ -37,6 +37,8 @@ public class ImageProcessor : MonoBehaviour
     private HashSet <string> whiteBanList;
     private HashSet <string> grayBanList;
 
+    private bool textureSet = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -125,8 +127,11 @@ public class ImageProcessor : MonoBehaviour
             //Call method to process texture
             Debug.Log("Image loaded! Beginning processing...");
 
-            for(int i = 0; i < buttonObjects.Length; i++){
-                buttons[i].interactable = true;
+            if(textureSet == false){
+                for(int i = 0; i < buttonObjects.Length; i++){
+                    buttons[i].interactable = true;
+                }
+                textureSet = true;
             }
             
             previousTexture = rawImage.texture;
@@ -159,6 +164,9 @@ public class ImageProcessor : MonoBehaviour
     //Regenerate the Palette, not producing the same colors as before.
     public void RegenColors(){
         Debug.Log("Generating a new Palette...");
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = false;
+        }
         HashSet<string> banList = new HashSet<string>();
         for (int i = 0; i < inputFields.Length; i++)
         {
@@ -169,27 +177,57 @@ public class ImageProcessor : MonoBehaviour
         if(colorCounts != null){
             SelectColors(colorCounts,banList,randomizeTimes: 1);
         }
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = true;
+        }
     }
 
     //Removes all blacks from palette
     public void RemoveColorGroupBlack(){
         Debug.Log("Removing blacks...");
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = false;
+        }
         List<string> preselects = buildPreselects(blackBanList);
         SelectColors(colorCounts,blackBanList,randomizeTimes: 1, preselects);
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = true;
+            if(i == 1){
+                buttons[i].interactable = false;
+            }
+        }
     }
 
     //Remove all whites from palette
     public void RemoveColorGroupWhite(){
         Debug.Log("Removing whites...");
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = false;
+        }
         List<string> preselects = buildPreselects(whiteBanList);
         SelectColors(colorCounts,whiteBanList,randomizeTimes: 1,preselects);
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = true;
+            if(i == 3){
+                buttons[i].interactable = false;
+            }
+        }
     }
 
     //Remove all grays from palette
     public void RemoveColorGroupGray(){
         Debug.Log("Removing greys...");
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = false;
+        }
         List<string> preselects = buildPreselects(grayBanList);
         SelectColors(colorCounts,grayBanList,randomizeTimes: 1, preselects);
+        for(int i = 0; i < buttons.Length; i++){
+            buttons[i].interactable = true;
+            if(i == 2){
+                buttons[i].interactable = false;
+            }
+        }
     }
 
     //Builds the list of colors that don't need to be removed from the current line-up.
