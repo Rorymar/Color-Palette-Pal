@@ -7,9 +7,10 @@ public class MarkerColorChanger : MonoBehaviour
 {
 
     private bool is_black;
-    [SerializeField] private GameObject marker;
-
-    [SerializeField] private List<Image> marker_images;
+    [SerializeField] 
+    private GameObject marker;
+    [SerializeField] 
+    private List<Image> marker_images;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class MarkerColorChanger : MonoBehaviour
         changeColOnPosition();
     }
 
+    //Change color of the marker if it is high/low enough
     void changeColOnPosition()
     {
         if (!is_black && marker.transform.localPosition.y > 70)
@@ -32,7 +34,7 @@ public class MarkerColorChanger : MonoBehaviour
             {
                 marker_images[i].color = Color.black;
             }
-        } else if (is_black && marker.transform.localPosition.y < 70)
+        } else if (is_black && marker.transform.localPosition.y <= 70)
         {
             is_black = false;
             for (int i = 0; i < marker_images.Count; i++)
