@@ -20,6 +20,9 @@ public class ApplyColor : MonoBehaviour
     [SerializeField]
     FlexibleColorPicker color_picker;
 
+    [SerializeField]
+    GameObject colPickObj;
+
     //List of Color Channel input fields
     [SerializeField]
     List<TMP_InputField> input_fields;
@@ -63,6 +66,8 @@ public class ApplyColor : MonoBehaviour
             input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
         }
         previousColor = color_picker.color;
+
+        colPickObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -103,6 +108,7 @@ public class ApplyColor : MonoBehaviour
                     checkBoxes[i].GetComponent<UnityEngine.UI.Toggle>().isOn = false;
                 } else
                 {
+                    colPickObj.SetActive(true);
                     color_picker.color = channelMats[i].color;
                 }
             }
@@ -114,6 +120,9 @@ public class ApplyColor : MonoBehaviour
     public void toggleColor(int n)
     {
         can_change[n] = !can_change[n];
+        if(!can_change.Contains(true)) {
+            colPickObj.SetActive(false);
+        }
     }
 
     //Functions to lock/unlock each color
