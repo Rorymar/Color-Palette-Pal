@@ -159,10 +159,16 @@ public class ColorToggle : MonoBehaviour
             if (redSlider.value == 4)
             {
                 colorBlindnessType.text = "Protanopia";
-            } else if (redSlider.value >= 2)
+            }
+            else if (redSlider.value >= 2)
             {
                 colorBlindnessType.text = "Protanomaly";
-            } else
+            }
+            else if (redSlider.value >= 1)
+            {
+                colorBlindnessType.text = "Minimal Blindness";
+            }
+            else
             {
                 colorBlindnessType.text = "Normal Vision";
             }
@@ -180,6 +186,10 @@ public class ColorToggle : MonoBehaviour
             else if (greenSlider.value >= 2)
             {
                 colorBlindnessType.text = "Deuteranomaly";
+            }
+            else if (greenSlider.value >= 1)
+            {
+                colorBlindnessType.text = "Minimal Blindness";
             }
             else
             {
@@ -200,6 +210,10 @@ public class ColorToggle : MonoBehaviour
             {
                 colorBlindnessType.text = "Tritanomaly";
             }
+            else if (blueSlider.value >= 1)
+            {
+                colorBlindnessType.text = "Minimal Blindness";
+            }
             else
             {
                 colorBlindnessType.text = "Normal Vision";
@@ -218,6 +232,10 @@ public class ColorToggle : MonoBehaviour
             else if (monoSlider.value >= 2)
             {
                 colorBlindnessType.text = "Achromatomaly";
+            }
+            else if (monoSlider.value >= 1)
+            {
+                colorBlindnessType.text = "Minimal Blindness";
             }
             else
             {
