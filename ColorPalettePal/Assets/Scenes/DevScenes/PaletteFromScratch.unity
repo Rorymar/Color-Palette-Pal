@@ -543,9 +543,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 798e1770a1255ef76aefe5dbd33071ee, type: 2}
   - {fileID: 2100000, guid: e778593e66f91b1d3a7a960d40306bc9, type: 2}
   - {fileID: 2100000, guid: 004c00894d3594101b27e93713ccc1f9, type: 2}
-  color_picker: {fileID: 1252907627}
+  colorPicker: {fileID: 1252907627}
   colPickObj: {fileID: 876378638}
-  input_fields:
+  inputFields:
   - {fileID: 2055323968}
   - {fileID: 2081764244}
   - {fileID: 1025027306}
@@ -1384,7 +1384,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: setLocksImageToUnlocked
+        m_MethodName: SetLocksImageToUnlocked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1632,7 +1632,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: unlockCol
+        m_MethodName: UnlockCol
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2411,8 +2411,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol6Hex
-        m_Mode: 0
+        m_MethodName: ChangeCol6Hex
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2566,7 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marker: {fileID: 651132395}
-  marker_images:
+  markerImages:
   - {fileID: 1324314251}
   - {fileID: 134435770}
   - {fileID: 2026362920}
@@ -3245,7 +3245,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: toggleColor
+        m_MethodName: ToggleColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3257,7 +3257,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: onlyEdit
+        m_MethodName: OnlyEdit
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3654,8 +3654,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol4Hex
-        m_Mode: 0
+        m_MethodName: ChangeCol4Hex
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4338,7 +4338,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: toggleColor
+        m_MethodName: ToggleColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4350,7 +4350,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: onlyEdit
+        m_MethodName: OnlyEdit
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4523,7 +4523,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: unlockCol
+        m_MethodName: UnlockCol
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4917,8 +4917,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol3Hex
-        m_Mode: 0
+        m_MethodName: ChangeCol3Hex
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5107,7 +5107,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: unlockCol
+        m_MethodName: UnlockCol
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5702,7 +5702,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: randomizeUnlockedColors
+        m_MethodName: RandomizeUnlockedColors
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6235,7 +6235,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: unlockCol
+        m_MethodName: UnlockCol
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6329,8 +6329,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol5Hex
-        m_Mode: 0
+        m_MethodName: ChangeCol5Hex
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6744,7 +6744,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: toggleColor
+        m_MethodName: ToggleColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6756,7 +6756,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: onlyEdit
+        m_MethodName: OnlyEdit
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7910,7 +7910,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: toggleColor
+        m_MethodName: ToggleColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7922,7 +7922,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: onlyEdit
+        m_MethodName: OnlyEdit
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8174,7 +8174,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: unlockCol
+        m_MethodName: UnlockCol
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9360,7 +9360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceea45b953e159887a8026858799d93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hex_inputs:
+  hexInputs:
   - {fileID: 2055323968}
   - {fileID: 2081764244}
   - {fileID: 1025027306}
@@ -9908,7 +9908,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: toggleColor
+        m_MethodName: ToggleColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9920,7 +9920,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: onlyEdit
+        m_MethodName: OnlyEdit
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10563,8 +10563,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol1Hex
-        m_Mode: 0
+        m_MethodName: ChangeCol1Hex
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10733,7 +10733,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: toggleColor
+        m_MethodName: ToggleColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10745,7 +10745,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: onlyEdit
+        m_MethodName: OnlyEdit
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10842,7 +10842,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: unlockCol
+        m_MethodName: UnlockCol
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10936,8 +10936,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 113428954}
         m_TargetAssemblyTypeName: ApplyColor, Assembly-CSharp
-        m_MethodName: changeCol2Hex
-        m_Mode: 0
+        m_MethodName: ChangeCol2Hex
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -381,8 +381,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 104492466}
         m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
-        m_MethodName: updateColor
-        m_Mode: 0
+        m_MethodName: UpdateColor
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1626,7 +1626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceea45b953e159887a8026858799d93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hex_inputs:
+  hexInputs:
   - {fileID: 1312842856}
   - {fileID: 1985626242}
   - {fileID: 40390017}
@@ -3879,8 +3879,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 902683455}
         m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
-        m_MethodName: updateColor
-        m_Mode: 0
+        m_MethodName: UpdateColor
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4385,8 +4385,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1477799539}
         m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
-        m_MethodName: updateColor
-        m_Mode: 0
+        m_MethodName: UpdateColor
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7644,8 +7644,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 572008804}
         m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
-        m_MethodName: updateColor
-        m_Mode: 0
+        m_MethodName: UpdateColor
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12034,8 +12034,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1618982285}
         m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
-        m_MethodName: updateColor
-        m_Mode: 0
+        m_MethodName: UpdateColor
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12586,8 +12586,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1718073416}
         m_TargetAssemblyTypeName: ImageHexSwap, Assembly-CSharp
-        m_MethodName: updateColor
-        m_Mode: 0
+        m_MethodName: UpdateColor
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

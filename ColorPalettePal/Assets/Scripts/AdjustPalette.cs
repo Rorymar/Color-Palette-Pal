@@ -69,7 +69,7 @@ public class ColorBlindnessAdjuster : MonoBehaviour
                 // update color, throw invalid hex error in console if not valid
                 try
                 {
-                    Color newColor = cc.createColorFromHex(hexText);
+                    Color newColor = cc.CreateColorFromHex(hexText);
                     if (!userColors[i].HasValue || newColor != userColors[i].Value)
                     {
                         UpdateColorPanel(i, newColor);
@@ -148,7 +148,7 @@ public class ColorBlindnessAdjuster : MonoBehaviour
                 // use user colors, don't replace with filtered color but display it with hex code
                 Color adjustedColor = AdjustForColorBlindness(userColors[i].Value, type);
                 colorPanels[i].color = adjustedColor;
-                hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+                hexInputs[i].SetTextWithoutNotify(cc.CreateHexFromColor(adjustedColor));
             }
         }
     }
@@ -161,7 +161,7 @@ public class ColorBlindnessAdjuster : MonoBehaviour
             {
                 // display original color/hex from user
                 colorPanels[i].color = userColors[i].Value;
-                hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(userColors[i].Value));
+                hexInputs[i].SetTextWithoutNotify(cc.CreateHexFromColor(userColors[i].Value));
             }
             else
             {

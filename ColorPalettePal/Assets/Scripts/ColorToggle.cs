@@ -65,7 +65,7 @@ public class ColorToggle : MonoBehaviour
     {
         for(int i = 0; i < 6; i++){
             hexInputs[i].text = defaultHexColors[i];
-            colorPanels[i].color = cc.createColorFromHex(defaultHexColors[i]);
+            colorPanels[i].color = cc.CreateColorFromHex(defaultHexColors[i]);
         }
     }
 
@@ -83,7 +83,7 @@ public class ColorToggle : MonoBehaviour
         //print(hexCode);
         if (ColorUtility.TryParseHtmlString(hexCode, out Color color1))
         {
-            Color color = cc.createColorFromHex(hexCode);
+            Color color = cc.CreateColorFromHex(hexCode);
             // Store original color, update panel, apply color blindness adjustments
             originalColors[index] = color;
             colorPanels[index].color = color;
@@ -143,7 +143,7 @@ public class ColorToggle : MonoBehaviour
             colorPanels[i].color = adjustedColor;
 
             // Update hex input field to display the current color (debug purposes)
-            //hexInputs[i].SetTextWithoutNotify(cc.createHexFromColor(adjustedColor));
+            //hexInputs[i].SetTextWithoutNotify(cc.CreateHexFromColor(adjustedColor));
         }
     }
 

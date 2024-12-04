@@ -18,14 +18,14 @@ public class ApplyColor : MonoBehaviour
     List<Material> channelMats;
 
     [SerializeField]
-    FlexibleColorPicker color_picker;
+    FlexibleColorPicker colorPicker;
 
     [SerializeField]
     GameObject colPickObj;
 
     //List of Color Channel input fields
     [SerializeField]
-    List<TMP_InputField> input_fields;
+    List<TMP_InputField> inputFields;
 
     //List of color panel selection checkboxes
     [SerializeField]
@@ -39,7 +39,7 @@ public class ApplyColor : MonoBehaviour
     PaletteHistory hh;
 
     //Private Variables for changing the colors via color picker
-    private List<bool> can_change;
+    private List<bool> canChange;
 
     private Color previousColor;
 
@@ -50,22 +50,22 @@ public class ApplyColor : MonoBehaviour
     void Start()
     {
         //Make all colors uneditable and unlocked to start out
-        can_change = new List<bool>();
+        canChange = new List<bool>();
         locked = new List<bool>();
         for (int i = 0; i < 6; i++)
         {
-            can_change.Add(false);
+            canChange.Add(false);
             locked.Add(false);
         }
-        unlockAllCols();
+        UnlockAllCols();
 
         //Set channel colors to default and input fields to start
         for (int i = 0; i < channelMats.Count; i++)
         {
-            channelMats[i].color = color_picker.color;
-            input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
+            channelMats[i].color = colorPicker.color;
+            inputFields[i].SetTextWithoutNotify(cc.CreateHexFromColor(channelMats[i].color));
         }
-        previousColor = color_picker.color;
+        previousColor = colorPicker.color;
 
         colPickObj.SetActive(false);
     }
@@ -77,27 +77,27 @@ public class ApplyColor : MonoBehaviour
         //If this holds, change the color
         for (int i = 0; i < 6; i++)
         {
-            if (can_change[i] && !previousColor.Equals(color_picker.color))
+            if (canChange[i] && !previousColor.Equals(colorPicker.color))
             {
-                channelMats[i].color = color_picker.color;
-                input_fields[i].SetTextWithoutNotify(cc.createHexFromColor(channelMats[i].color));
+                channelMats[i].color = colorPicker.color;
+                inputFields[i].SetTextWithoutNotify(cc.CreateHexFromColor(channelMats[i].color));
                 //hh.newEntry();
             }
         }
 
-        previousColor = color_picker.color;
+        previousColor = colorPicker.color;
     }
 
     //Triggers when application quits
     void OnApplicationQuit()
     {
         for(int i = 0; i < 6; i++) {
-            channelMats[i].color = cc.createColorFromHex("#E6B1B1");
+            channelMats[i].color = cc.CreateColorFromHex("#E6B1B1");
         }
     }
 
     //Functions to monitor whether a color is editable or not
-    public void onlyEdit(int chNum)
+    public void OnlyEdit(int chNum)
     {
         if(checkBoxes[chNum].GetComponent<UnityEngine.UI.Toggle>().isOn)
         {
@@ -109,7 +109,7 @@ public class ApplyColor : MonoBehaviour
                 } else
                 {
                     colPickObj.SetActive(true);
-                    color_picker.color = channelMats[i].color;
+                    colorPicker.color = channelMats[i].color;
                 }
             }
         }
@@ -117,21 +117,22 @@ public class ApplyColor : MonoBehaviour
     }
 
     //mark a color panel as editable when its check box is marked
-    public void toggleColor(int n)
+    public void ToggleColor(int n)
     {
-        can_change[n] = !can_change[n];
-        if(!can_change.Contains(true)) {
+        canChange[n] = !canChange[n];
+        if(!canChange.Contains(true)) 
+        {
             colPickObj.SetActive(false);
         }
     }
 
     //Functions to lock/unlock each color
-    public void unlockCol(int n)
+    public void UnlockCol(int n)
     {
         locked[n] = !locked[n];
     }
 
-    public void unlockAllCols()
+    public void UnlockAllCols()
     {
         for(int i = 0; i < 6; i++)
         {
@@ -140,7 +141,7 @@ public class ApplyColor : MonoBehaviour
     }
 
     //Change all of the lock images to unlocked images, and set all colors as able to be randomized
-    public void setLocksImageToUnlocked()
+    public void SetLocksImageToUnlocked()
     {
         //print("In image, col1: " + col1_locked);
         //Place holder before actual lock images
@@ -159,83 +160,83 @@ public class ApplyColor : MonoBehaviour
     }
 
     //Functions to change colors based on hex input
-    public void changeCol1Hex(string changed)
+    public void ChangeCol1Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[0].color = cc.createColorFromHex(changed);   
+            channelMats[0].color = cc.CreateColorFromHex(changed);   
             //hh.newEntry();
         }
     }
-    public void changeCol2Hex(string changed)
+    public void ChangeCol2Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[1].color = cc.createColorFromHex(changed);  
+            channelMats[1].color = cc.CreateColorFromHex(changed);  
             //hh.newEntry(); 
         }
     }
-    public void changeCol3Hex(string changed)
+    public void ChangeCol3Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[2].color = cc.createColorFromHex(changed);   
+            channelMats[2].color = cc.CreateColorFromHex(changed);   
             //hh.newEntry();
         }
     }
-    public void changeCol4Hex(string changed)
+    public void ChangeCol4Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[3].color = cc.createColorFromHex(changed);   
+            channelMats[3].color = cc.CreateColorFromHex(changed);   
             //hh.newEntry();
         }
     }
-    public void changeCol5Hex(string changed)
+    public void ChangeCol5Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[4].color = cc.createColorFromHex(changed); 
+            channelMats[4].color = cc.CreateColorFromHex(changed); 
             //hh.newEntry();  
         }
     }
-    public void changeCol6Hex(string changed)
+    public void ChangeCol6Hex(string changed)
     {
         if (changed.Length == 7)
         {
-            channelMats[5].color = cc.createColorFromHex(changed);   
+            channelMats[5].color = cc.CreateColorFromHex(changed);   
             //hh.newEntry();
         }
     }
 
-    public void randomizeUnlockedColors()
+    public void RandomizeUnlockedColors()
     //Retrives all materials and states on whether locked, then randomizes the color on the unlocked colors
     {
-        List<Material> mat_list = new List<Material>();
-        List<bool> locked_list = new List<bool>();
-        Random random_num_gen= new Random();
+        List<Material> matList = new List<Material>();
+        List<bool> lockedList = new List<bool>();
+        Random randomNumGen= new Random();
         
         for(int i = 0; i < 6; ++i)
         {
-            locked_list.Add(locked[i]);
+            lockedList.Add(locked[i]);
         }
         
         for (int i = 0; i < 6; ++i)
         {
-            mat_list.Add(transform.GetChild(i).gameObject.transform.GetChild(0).gameObject
+            matList.Add(transform.GetChild(i).gameObject.transform.GetChild(0).gameObject
                 .GetComponent<UnityEngine.UI.Image>().material);
         }
         for (int i = 0; i < 6; ++i)
         {
-            if (!locked_list[i])
+            if (!lockedList[i])
             {
-                double red = random_num_gen.NextDouble();
-                double blue = random_num_gen.NextDouble();
-                double green = random_num_gen.NextDouble();
-                Color col_to_set = new Color((float)red, (float)blue, (float)green);
-                mat_list[i].color = col_to_set;
+                double red = randomNumGen.NextDouble();
+                double blue = randomNumGen.NextDouble();
+                double green = randomNumGen.NextDouble();
+                Color colToSet = new Color((float)red, (float)blue, (float)green);
+                matList[i].color = colToSet;
                 transform.GetChild(i).gameObject.transform.GetChild(2).gameObject.
-                    GetComponent<TMP_InputField>().text = cc.createHexFromColor(col_to_set);
+                    GetComponent<TMP_InputField>().text = cc.CreateHexFromColor(colToSet);
             }
         }
     }

@@ -14,22 +14,27 @@ public class ImageHexSwap : MonoBehaviour
     //A variable for the proper format of a hex code.
     private string hexFormat = @"^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?$";
 
-    void Start(){
+    void Start()
+    {
         panelMaterial = GetComponent<Image>().material;
     }
 
     //Updates the color of a material panel from a hex if it is valid
-    public void updateColor(string hex){
-        if(isValidHex(hex)){
-            panelMaterial.color = cc.createColorFromHex(hex);
+    public void UpdateColor(string hex)
+    {
+        if(IsValidHex(hex))
+        {
+            panelMaterial.color = cc.CreateColorFromHex(hex);
         }
-        else{
+        else
+        {
             Debug.Log("Error: Invalid Hex Code");
         }
     }
 
     //Returns if boolean is a valid hex
-    private bool isValidHex(string hex){
+    private bool IsValidHex(string hex)
+    {
         return Regex.IsMatch(hex,hexFormat);
     }
 }

@@ -12,10 +12,10 @@ using TMPro;
 public class PaletteSaver : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField]
-    private List<TMP_InputField> hex_inputs;
+    private List<TMP_InputField> hexInputs;
     
     // Sample text data
-    private string save_data;
+    private string saveData;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
     //
@@ -43,22 +43,23 @@ public class PaletteSaver : MonoBehaviour, IPointerDownHandler
     // Listen OnClick event in standlone builds
     void Start()
     {
-        save_data = "";
+        saveData = "";
         var button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
     }
 
-    public void OnClick() {
+    public void OnClick() 
+    {
         //Get all 6 hex values and string them together
-        save_data = "Generated Palette:\n";
-        for (int i = 0; i < hex_inputs.Count; i++)
+        saveData = "Generated Palette:\n";
+        for (int i = 0; i < hexInputs.Count; i++)
         {
-            if(hex_inputs[i].text != "Hex Code"){
-                save_data += hex_inputs[i].text;
+            if(hexInputs[i].text != "Hex Code"){
+                saveData += hexInputs[i].text;
             }
-            if (i < hex_inputs.Count - 1 && hex_inputs[i+1].text != "Hex Code")
+            if (i < hexInputs.Count - 1 && hexInputs[i+1].text != "Hex Code")
             {
-                save_data += "\n";
+                saveData += "\n";
             }
         }
 
@@ -73,7 +74,7 @@ public class PaletteSaver : MonoBehaviour, IPointerDownHandler
             {
                 path += ".txt";
             }
-            File.WriteAllText(path, save_data);
+            File.WriteAllText(path, saveData);
         }
     }
 #endif

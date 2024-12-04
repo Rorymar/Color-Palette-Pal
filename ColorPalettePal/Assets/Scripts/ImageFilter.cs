@@ -71,7 +71,8 @@ public class ImageFilter : MonoBehaviour
         // Check if rawImage and its texture are not null and if the texture has changed
         if (rawImage != null && rawImage.texture != null)
         {
-            if(previousTexture != rawImage.texture){
+            if(previousTexture != rawImage.texture)
+            {
                 previousTexture = rawImage.texture as Texture2D;
                 filteredImageDisplay.texture = rawImage.texture;
                 if(textureSet == false){
@@ -81,7 +82,8 @@ public class ImageFilter : MonoBehaviour
                     textureSet = true;
                 }
             }
-            if(filteredImageDisplay.texture == null){
+            if(filteredImageDisplay.texture == null)
+            {
                 filteredImageDisplay.texture = rawImage.texture;
             }
         }
@@ -169,7 +171,8 @@ public class ImageFilter : MonoBehaviour
         filteredImageDisplay.texture = previousTexture;
         currentType = ColorBlindType.None;
         buttons[0].interactable = false;
-        for(int i = 1; i < buttons.Length; i++){
+        for(int i = 1; i < buttons.Length; i++)
+        {
             buttons[i].interactable = true;
         }
         Debug.Log($"Reset image display.");
@@ -187,20 +190,25 @@ public class ImageFilter : MonoBehaviour
         };
 
         int buttonIndex = 0;
-        if(type == "Protanopia"){
+        if(type == "Protanopia")
+        {
             buttonIndex = 3;
         }
-        else if(type == "Deuteranopia"){
+        else if(type == "Deuteranopia")
+        {
             buttonIndex = 2;
         }
-        else if(type == "Tritanopia"){
+        else if(type == "Tritanopia")
+        {
             buttonIndex = 4;
         }
-        else if(type == "Achromatopsia"){
+        else if(type == "Achromatopsia")
+        {
             buttonIndex = 1;
         }
 
-        for(int i = 0; i < buttons.Length; i++){
+        for(int i = 0; i < buttons.Length; i++)
+        {
             buttons[i].interactable = false;
         }
 
@@ -209,8 +217,10 @@ public class ImageFilter : MonoBehaviour
             ProcessTexture(previousTexture); // Re-process the image with the new type
         }
 
-        for(int i = 0; i < buttons.Length; i++){
-            if(i != buttonIndex){
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            if(i != buttonIndex)
+            {
                 buttons[i].interactable = true;
             }
         }
