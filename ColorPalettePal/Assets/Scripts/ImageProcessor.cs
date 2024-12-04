@@ -56,9 +56,9 @@ public class ImageProcessor : MonoBehaviour
         }
 
         //Create the Ban Lists
-        blackBanList = new HashSet<string>(MakeBanList(0,60));
-        whiteBanList = new HashSet<string>(MakeBanList(195,255));
-        grayBanList = new HashSet<string>(MakeGrayBanList(50,200));
+        blackBanList = new HashSet<string>(MakeBanList(0,70));
+        whiteBanList = new HashSet<string>(MakeBanList(185,255));
+        grayBanList = new HashSet<string>(MakeGrayBanList(60,210));
 
         //DELETE WHEN CACHE IS SET UP(?)
         ResetColors();
