@@ -7,9 +7,9 @@ A comment should be concise, relevant, and informative. Always comment before a 
 ## Naming Conventions
 Variable names should be consistent and understandable. Avoid overly long variable names and names matching other elements of the code. For style consistency, variable names should be camel-case and function names should begin with capital letters.
 ## Spacing
-Tab spacing should be 4 characters wide and there should be one empty line between function definitions
+Tab spacing should be 4 characters wide and there should be one empty line between function definitions.
 ##Brace Placement
-Braces should begin on the line following that of the class declaration, function declaration, and loop conditions
+Braces should begin on the line following that of the class declaration, function declaration, and loop conditions.
 
 # Project Practices
 ## Github Model
