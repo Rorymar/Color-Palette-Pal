@@ -244,45 +244,6 @@ public class ColorBlindnessAdjuster : MonoBehaviour
 
                 if (index > 0)
                 {
-                    float green = colorPanels[index - 1].color.g;
-                    float red = colorPanels[index - 1].color.r;
-
-                    // distance calculation
-                    float distance = Mathf.Pow(adjustedRgb.y - green, 2.0f) +
-                                     Mathf.Pow(adjustedRgb.x - red, 2.0f);
-
-                    // similarity check
-                    if (distance < 0.1f)
-                    {
-                        // increase/decrease green if too close
-                        if (adjustedRgb.y < 0.9f && adjustedRgb.y > green)
-                        {
-                            rgb.y += 0.1f;
-                        }
-                        else if (adjustedRgb.y > 0.1f && adjustedRgb.y < green)
-                        {
-                            rgb.y -= 0.1f;
-                        }
-
-                        // increase/decrease red if too close
-                        if (adjustedRgb.x < 0.9f && adjustedRgb.x > red)
-                        {
-                            rgb.x += 0.1f;
-                        }
-                        else if (adjustedRgb.x > 0.1f && adjustedRgb.x < red)
-                        {
-                            rgb.x -= 0.1f;
-                        }
-                    }
-                }
-                adjustedRgb = rgb;
-                break;
-
-            case "Tritan":
-                adjustedRgb = ApplyBrettel(rgb, Brettel1997.Tritan);
-
-                if (index > 0)
-                {
                     float red = colorPanels[index - 1].color.r;
                     float blue = colorPanels[index - 1].color.b;
 
@@ -301,6 +262,44 @@ public class ColorBlindnessAdjuster : MonoBehaviour
                         else if (adjustedRgb.z > 0.1f && adjustedRgb.z < blue)
                         {
                             rgb.z -= 0.1f;
+                        }
+
+                        // increase/decrease red if too close
+                        if (adjustedRgb.x < 0.9f && adjustedRgb.x > red)
+                        {
+                            rgb.x += 0.1f;
+                        }
+                        else if (adjustedRgb.x > 0.1f && adjustedRgb.x < red)
+                        {
+                            rgb.x -= 0.1f;
+                        }
+                    }
+                }
+                adjustedRgb = rgb;
+                break;
+
+            case "Tritan":
+                adjustedRgb = ApplyBrettel(rgb, Brettel1997.Tritan);
+                if (index > 0)
+                {
+                    float green = colorPanels[index - 1].color.g;
+                    float red = colorPanels[index - 1].color.r;
+
+                    // distance calculation
+                    float distance = Mathf.Pow(adjustedRgb.y - green, 2.0f) +
+                                     Mathf.Pow(adjustedRgb.x - red, 2.0f);
+
+                    // similarity check
+                    if (distance < 0.1f)
+                    {
+                        // increase/decrease green if too close
+                        if (adjustedRgb.y < 0.9f && adjustedRgb.y > green)
+                        {
+                            rgb.y += 0.1f;
+                        }
+                        else if (adjustedRgb.y > 0.1f && adjustedRgb.y < green)
+                        {
+                            rgb.y -= 0.1f;
                         }
 
                         // increase/decrease red if too close
