@@ -188,53 +188,168 @@ public class ColorBlindnessAdjuster : MonoBehaviour
         }
     }
 
-    // selecting color blindness type
+    // selecting color blindness type and adjusting for it
     private Color AdjustForColorBlindness(Color color, string type, int index)
     {
         Vector3 rgb = new Vector3(color.r, color.g, color.b);
         Vector3 adjustedRgb;
 
+        // for each: simulate how color looks for that type of color blindness
+        //   adjust the color only if not first color of palette
+        //   get non blind colors (ex. green and blue for protan) and calculate distance between current color and prev color for that
+        //   if they're too similar, adjust current color's non blind colors and update the color
         switch (type)
         {
             case "Protan":
                 adjustedRgb = ApplyBrettel(rgb, Brettel1997.Protan);
+
                 if (index > 0)
                 {
                     float green = colorPanels[index - 1].color.g;
                     float blue = colorPanels[index - 1].color.b;
+
+                    // distance calculation
                     float distance = Mathf.Pow(adjustedRgb.y - green, 2.0f) +
-                        Mathf.Pow(adjustedRgb.z - blue, 2.0f);
+                                     Mathf.Pow(adjustedRgb.z - blue, 2.0f);
+
+                    // similarity check
                     if (distance < 0.1f)
                     {
+                        // increase/decrease green if too close
                         if (adjustedRgb.y < 0.9f && adjustedRgb.y > green)
                         {
-                            rgb.y += 0.1f;   
-                        } else if (adjustedRgb.y > 0.1f && adjustedRgb.y < green)
+                            rgb.y += 0.1f;
+                        }
+                        else if (adjustedRgb.y > 0.1f && adjustedRgb.y < green)
                         {
                             rgb.y -= 0.1f;
                         }
 
+                        // increase/decrease blue if too close
                         if (adjustedRgb.z < 0.9f && adjustedRgb.z > blue)
                         {
-                            rgb.z += 0.1f;   
-                        } else if (adjustedRgb.z > 0.1f && adjustedRgb.z < blue)
+                            rgb.z += 0.1f;
+                        }
+                        else if (adjustedRgb.z > 0.1f && adjustedRgb.z < blue)
                         {
                             rgb.z -= 0.1f;
                         }
                     }
                 }
-
                 adjustedRgb = rgb;
                 break;
+
             case "Deutan":
                 adjustedRgb = ApplyBrettel(rgb, Brettel1997.Deutan);
+
+                if (index > 0)
+                {
+                    float green = colorPanels[index - 1].color.g;
+                    float red = colorPanels[index - 1].color.r;
+
+                    // distance calculation
+                    float distance = Mathf.Pow(adjustedRgb.y - green, 2.0f) +
+                                     Mathf.Pow(adjustedRgb.x - red, 2.0f);
+
+                    // similarity check
+                    if (distance < 0.1f)
+                    {
+                        // increase/decrease green if too close
+                        if (adjustedRgb.y < 0.9f && adjustedRgb.y > green)
+                        {
+                            rgb.y += 0.1f;
+                        }
+                        else if (adjustedRgb.y > 0.1f && adjustedRgb.y < green)
+                        {
+                            rgb.y -= 0.1f;
+                        }
+
+                        // increase/decrease red if too close
+                        if (adjustedRgb.x < 0.9f && adjustedRgb.x > red)
+                        {
+                            rgb.x += 0.1f;
+                        }
+                        else if (adjustedRgb.x > 0.1f && adjustedRgb.x < red)
+                        {
+                            rgb.x -= 0.1f;
+                        }
+                    }
+                }
+                adjustedRgb = rgb;
                 break;
+
             case "Tritan":
                 adjustedRgb = ApplyBrettel(rgb, Brettel1997.Tritan);
+
+                if (index > 0)
+                {
+                    float red = colorPanels[index - 1].color.r;
+                    float blue = colorPanels[index - 1].color.b;
+
+                    // distance calculation
+                    float distance = Mathf.Pow(adjustedRgb.x - red, 2.0f) +
+                                     Mathf.Pow(adjustedRgb.z - blue, 2.0f);
+
+                    // similarity check
+                    if (distance < 0.1f)
+                    {
+                        // increase/decrease blue if too close
+                        if (adjustedRgb.z < 0.9f && adjustedRgb.z > blue)
+                        {
+                            rgb.z += 0.1f;
+                        }
+                        else if (adjustedRgb.z > 0.1f && adjustedRgb.z < blue)
+                        {
+                            rgb.z -= 0.1f;
+                        }
+
+                        // increase/decrease red if too close
+                        if (adjustedRgb.x < 0.9f && adjustedRgb.x > red)
+                        {
+                            rgb.x += 0.1f;
+                        }
+                        else if (adjustedRgb.x > 0.1f && adjustedRgb.x < red)
+                        {
+                            rgb.x -= 0.1f;
+                        }
+                    }
+                }
+                adjustedRgb = rgb;
                 break;
+
             case "Achromatopsia":
                 adjustedRgb = ApplyAchromatopsia(rgb);
+
+                if (index > 0)
+                {
+                    float grayPrev = (colorPanels[index - 1].color.r * 0.299f +
+                                      colorPanels[index - 1].color.g * 0.587f +
+                                      colorPanels[index - 1].color.b * 0.114f);
+                    float grayCurrent = (adjustedRgb.x * 0.299f +
+                                         adjustedRgb.y * 0.587f +
+                                         adjustedRgb.z * 0.114f);
+
+                    // distance calculation
+                    float distance = Mathf.Abs(grayCurrent - grayPrev);
+
+                    // similarity check
+                    if (distance < 0.1f)
+                    {
+                        // brighten/darken if too close
+                        if (grayCurrent < 0.9f && grayCurrent > grayPrev)
+                        {
+                            rgb.x += 0.05f; rgb.y += 0.05f; rgb.z += 0.05f;
+                        }
+                        else if (grayCurrent > 0.1f && grayCurrent < grayPrev)
+                        {
+                            rgb.x -= 0.05f; rgb.y -= 0.05f; rgb.z -= 0.05f;
+                        }
+                    }
+                }
+                adjustedRgb = rgb;
                 break;
+
+            // no adjustment needed, color can remain the same
             default:
                 adjustedRgb = rgb;
                 break;
@@ -242,6 +357,8 @@ public class ColorBlindnessAdjuster : MonoBehaviour
 
         return ClampColor(new Color(adjustedRgb.x, adjustedRgb.y, adjustedRgb.z, color.a));
     }
+
+
 
     // apply filter based on selected option (for protan, deutan, and tritan)
     private Vector3 ApplyBrettel(Vector3 rgb, Brettel1997.Params parameters)
