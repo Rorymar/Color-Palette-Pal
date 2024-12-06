@@ -146,7 +146,7 @@ public class ColorBlindnessAdjuster : MonoBehaviour
             if (userColors[i].HasValue)
             {
                 // use user colors, don't replace with filtered color but display it with hex code
-                Color adjustedColor = AdjustForColorBlindness(userColors[i].Value, type);
+                Color adjustedColor = AdjustForColorBlindness(userColors[i].Value, type, i);
                 colorPanels[i].color = adjustedColor;
                 hexInputs[i].SetTextWithoutNotify(cc.CreateHexFromColor(adjustedColor));
             }
@@ -189,7 +189,7 @@ public class ColorBlindnessAdjuster : MonoBehaviour
     }
 
     // selecting color blindness type
-    private Color AdjustForColorBlindness(Color color, string type)
+    private Color AdjustForColorBlindness(Color color, string type, int index)
     {
         Vector3 rgb = new Vector3(color.r, color.g, color.b);
         Vector3 adjustedRgb;
@@ -198,6 +198,33 @@ public class ColorBlindnessAdjuster : MonoBehaviour
         {
             case "Protan":
                 adjustedRgb = ApplyBrettel(rgb, Brettel1997.Protan);
+                if (index > 0)
+                {
+                    float green = colorPanels[index - 1].color.g;
+                    float blue = colorPanels[index - 1].color.b;
+                    float distance = Mathf.Pow(adjustedRgb.y - green, 2.0f) +
+                        Mathf.Pow(adjustedRgb.z - blue, 2.0f);
+                    if (distance < 0.1f)
+                    {
+                        if (adjustedRgb.y < 0.9f && adjustedRgb.y > green)
+                        {
+                            rgb.y += 0.1f;   
+                        } else if (adjustedRgb.y > 0.1f && adjustedRgb.y < green)
+                        {
+                            rgb.y -= 0.1f;
+                        }
+
+                        if (adjustedRgb.z < 0.9f && adjustedRgb.z > blue)
+                        {
+                            rgb.z += 0.1f;   
+                        } else if (adjustedRgb.z > 0.1f && adjustedRgb.z < blue)
+                        {
+                            rgb.z -= 0.1f;
+                        }
+                    }
+                }
+
+                adjustedRgb = rgb;
                 break;
             case "Deutan":
                 adjustedRgb = ApplyBrettel(rgb, Brettel1997.Deutan);
