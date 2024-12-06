@@ -1,3 +1,17 @@
+/*
+ * Flexible Color Picker
+ * Free asset by Unity
+ * Made by Ward "WARdd" Dehairs
+ * contact at info@WARddDev.com
+ * More info at www.WARddDev.com
+ *
+ * Last Updated 20/04/2022
+ *
+ * Additonal contributions by
+ * Taha Sanli, ibrahimtahasanli@gmail.com
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
