@@ -14,7 +14,7 @@ Tools to Check Accessibility
 - Color Blindness Palette Adjustor; Changes your palette to be distinguishable under color blindness.
 
 # Installation Instructions
-TBA
+Further information about installation can be found on our GitHub release page for v1.0.0
 
 # Coding Standards
 ## Programming Practices
